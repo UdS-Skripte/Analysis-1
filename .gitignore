@@ -1,0 +1,10 @@
+# no tex helper files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+
+# I can compile on my own
+*.pdf

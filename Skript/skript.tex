@@ -1,10 +1,27 @@
-\documentclass{scrreprt}[twoside=true]
+\documentclass{scrreprt}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{ngerman}
+
+\usepackage[hidelinks]{hyperref}
+
+\newenvironment{proof}{\emph{\ Beweis.}}{}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
 
 \begin{document}
+
+	\title{Analysis 1 Skript}
+ 	\author{Dominic Zimmer}
+ 	%\date{18. Mai 1999}
+  	\maketitle 
 
 	\tableofcontents
 
@@ -12,108 +29,245 @@
 
 	\chapter{Beweisprinzipien}
 
-	\section{Aussagenlogik}
 
-	
+	\section{Aussagenlogik}	
 
-		Die Aussagenlogik befasst sich mit \emph{Aussagen}, welche \emph{(w)ahr} oder \emph{(f)alsch} sein können. Aus den Operatoren 
-		\begin{itemize}
-			\item
-				Negation:
-				\begin{equation*}
-					\neg a =
-						\begin{cases}
-							w & \text{falls $a \equiv f$}.\\
-							f & \text{falls $a \equiv w$}.
-						\end{cases}
-				\end{equation*}
-			\item
-				Konjunktion:
-				\begin{equation*}
-					a \lor b =
-						\begin{cases}
-							w & \text{falls $a \equiv w$ oder $b \equiv w$ (oder beide)}.\\
-							f & \text{sonst}.
-						\end{cases}
-				\end{equation*}
-			\item
-				Disjunktion:
-				\begin{equation*}
-					a \land b =
-						\begin{cases}
-							w & \text{falls $a \equiv w$ und $b \equiv w$}.\\
-							f & \text{sonst}.
-						\end{cases}
-				\end{equation*}
-			\item
-				Implikation:
-				\begin{equation*}
-					a \rightarrow b =
-						\begin{cases}
-							f & \text{falls $a \equiv w$ und $b \equiv f$}.\\
-							w & \text{sonst}.
-						\end{cases}
-				\end{equation*}
-			\item
-				Äquivalenz:
-				\begin{equation*}
-					a \leftrightarrow b =
-						\begin{cases}
-							w & \text{falls $a \equiv b$}.\\
-							f & \text{sonst}.
-						\end{cases}
-				\end{equation*}
-		\end{itemize}
-		lassen sich aus bereits bestehenden aussagelogischen Ausdrücken Weitere bilden. Auch lassen sich einfach aus den Definitionen Gesetzmäßigkeiten ableiten.
-
-		\section{Axiome}
-		\emph{Axiome} sind grundliegende Aussagen, die nicht weiter zurückgeführt werden (können). Wir \emph{beweisen}, indem wir \emph{Aussagen} auf Axiome zurückführen.
-
-		\section{Direkter Beweis}
-		Ein \emph{Direkter Beweis} wird geführt, indem man eine Aussage $A$ annimmt und ausgehend von dieser eine weitere Aussage $B$ \emph{beweist}.
-
-		\subsection{Beispiel}
-		Wir wollen zeigen, dass folgende Aussage korrekt ist:
-		\begin{center}
-			Das Quadrat einer geraden Zahl ist wiederum gerade.
-		\end{center}
-		\begin{proof}
-			Sei $a \in \mathbb{N}$ eine gerade Zahl, welche sich also auch als $a = 2 \cdot k$ darstellen lässt. Betrachten wir nun das Quadrat von $a$, so gilt:
+	Die Aussagenlogik befasst sich mit \emph{Aussagen}, welche \emph{(w)ahr} oder \emph{(f)alsch} sein können. Aus den Operatoren 
+	\begin{itemize}
+		\item
+			Negation:
 			\begin{equation*}
-				a^2 = (2 \cdot k)^2 = 2^2 \cdot k^2 = 4 k^2 = 2 \cdot (2 k^2)
+				\neg a =
+					\begin{cases}
+						w & \text{falls $a \equiv f$}.\\
+						f & \text{falls $a \equiv w$}.
+					\end{cases}
 			\end{equation*}
-			Somit hat also $a^2 = 2 \cdot (2 k^2)$ eine Zwei als Teiler und ist somit gerade.\square
-		\end{proof}
+		\item
+			Konjunktion:
+			\begin{equation*}
+				a \lor b =
+					\begin{cases}
+						w & \text{falls $a \equiv w$ oder $b \equiv w$ (oder beide)}.\\
+						f & \text{sonst}.
+					\end{cases}
+			\end{equation*}
+		\item
+			Disjunktion:
+			\begin{equation*}
+				a \land b =
+					\begin{cases}
+						w & \text{falls $a \equiv w$ und $b \equiv w$}.\\
+						f & \text{sonst}.
+					\end{cases}
+			\end{equation*}
+		\item
+			Implikation:
+			\begin{equation*}
+				a \rightarrow b =
+					\begin{cases}
+						f & \text{falls $a \equiv w$ und $b \equiv f$}.\\
+						w & \text{sonst}.
+					\end{cases}
+			\end{equation*}
+		\item
+			Äquivalenz:
+			\begin{equation*}
+				a \leftrightarrow b =
+					\begin{cases}
+						w & \text{falls $a \equiv b$}.\\
+						f & \text{sonst}.
+					\end{cases}
+			\end{equation*}
+	\end{itemize}
+	lassen sich aus bereits bestehenden aussagelogischen Ausdrücken Weitere bilden. Auch lassen sich einfach aus den Definitionen Gesetzmäßigkeiten ableiten.
 
-		\section{Indirekter Beweis durch Kontraposition}
-		Statt die Implikation $A \rightarrow B$ zu beweisen, können wir auch $\neg B \rightarrow \neg A$ beweisen. Wir nehmen also an, dass das zu zeigende nicht gilt und folgern daraus, dass unsere Annahme nicht gilt.
+	\section{Axiome}
+	\emph{Axiome} sind grundliegende Aussagen, die nicht weiter zurückgeführt werden (können). Wir \emph{beweisen}, indem wir \emph{Aussagen} auf Axiome zurückführen.
 
-		\section{Widerspruch}
-		Wir können eine Aussage $A$ auch beweisen, indem wir $\neg A$ annehmen und daraus einen Widerspruch folgern.
+	\section{Direkter Beweis}
+	Ein \emph{Direkter Beweis} wird geführt, indem man eine Aussage $A$ annimmt und ausgehend von dieser eine weitere Aussage $B$ \emph{beweist}.
 
-		\section{Prinzip der vollständigen Induktion}
-		Ist $A(n)$ eine Aussage mit $n \in \mathbb{N}$, so können wir diese Gültigkeit dieser Aussage für alle $n > n_0$ zeigen, indem wir
+	\subsection{Beispiel}
+	Wir wollen zeigen, dass folgende Aussage korrekt ist:
+	\begin{center}
+		Das Quadrat einer geraden Zahl ist wiederum gerade.
+	\end{center}
+	\begin{proof}
+		Sei $a \in \NN$ eine gerade Zahl, welche sich also auch als $a = 2 \cdot k$ darstellen lässt. Betrachten wir nun das Quadrat von $a$, so gilt:
+		\begin{equation*}
+			a^2 = (2 \cdot k)^2 = 2^2 \cdot k^2 = 4 k^2 = 2 \cdot (2 k^2)
+		\end{equation*}
+		Somit hat also $a^2 = 2 \cdot (2 k^2)$ eine Zwei als Teiler und ist somit gerade.$\square$
+	\end{proof}
+
+	\section{Indirekter Beweis durch Kontraposition}
+	Statt die Implikation $A \rightarrow B$ zu beweisen, können wir auch $\neg B \rightarrow \neg A$ beweisen. Wir nehmen also an, dass das zu zeigende nicht gilt und folgern daraus, dass unsere Annahme nicht gilt.
+
+	\section{Widerspruch}
+	Wir können eine Aussage $A$ auch beweisen, indem wir $\neg A$ annehmen und daraus einen Widerspruch folgern.
+
+	\section{Prinzip der vollständigen Induktion}
+	Ist $A(n)$ eine Aussage mit $n \in \NN$, so können wir diese Gültigkeit dieser Aussage für alle $n > n_0$ zeigen, indem wir
+	\begin{itemize}
+		\item
+			Die Gültigkeit der Aussage $A(n_0)$ zeigen und
+		\item
+			Aus der Annahme, dass die Aussage $A(n)$ für ein festes $n \in \NN$ bereits gilt, darauf schließen, dass auch $A(n + 1)$ gilt.
+	\end{itemize}
+
+	\section{Summennotation}
+	Seien $a_i$ ($i \in \NN$) eine Familie von Zahlen. Wir führen folgende Kurzschreibweise ein:
+	\begin{equation*}
+		\sum\limits_{k=m}^n a_i = a_m + \dots + a_n
+	\end{equation*}
+
+	\section{Gaußformel}
+	Für alle $n \in \NN$ gilt: 
+	\begin{equation*}
+			\sum\limits_{k=1}^n k = \frac{n \cdot (n + 1)}{2}
+	\end{equation*}
+	\begin{proof}
+		Der Beweis erfolg einfach durch Induktion oder alternativ durch geschicktes, zweifaches Summieren obiger Summe.  
+	\end{proof}
+
+	\section{Fakultät}
+		\subsection{Notation}
+		Wir definieren
+		\begin{equation*}
+			n ! = 1 \cdot 2 \cdot 3 \cdot \dots \cdot n = \prod\limits_{k=1}^n k 
+		\end{equation*}
+		als die \emph{Fakultät} von $n \in \NN$.
+		\subsection{Binomailkoeffizient}
+		Wir verwenden die Fakultät zur Definition des \emph{Binomialkoeffizientens}, den wir als \emph{n über k} oder \emph{k aus n} lesen:
+		\begin{equation*} 
+			\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!}
+		\end{equation*}
+
+	\section{Lemma: Binomialkoeffizient}
+	Für alle $1 \leq k \leq n$ gilt:
+	\begin{equation*}
+		\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+	\end{equation*}
+	\begin{proof}
+		Nachrechnen. Eine Intuition für die Korrektheit erhält man leicht durch das \emph{Pascal'sche Dreieck}.
+	\end{proof}
+
+	\section{Binomischer Lehrsatz}
+	Für alle $x, y \in \RR$ und $n \in \NN$ gilt:
+	\begin{equation*}
+		(a+b)^n = \sum\limits_{k=0}^n \binom{n}{k} a^k \cdot b^{n-k}
+	\end{equation*}
+	\begin{proof}
+		Der Beweis erfolgt leicht durch Induktion über n.
+	\end{proof}
+
+	\chapter{Mengen und Sprache der Mengen}
+
+	\section{Mengen nach Cantor}
+	Cantos naive Mengendefinition besagte:\\
+	Eine \emph{Menge} ist eine Zusammenfassung wohlbestimmter und wohlunterscheidbarer Objekte unserer Anschauung oder unseres Denkens zu einem Ganzen.\\ \\
+	Diese \emph{naive} Definition birgt einige Widersprüche; zum Beispiel erlaubt sie die Menge aller Mengen.	
+
+	\subsection{Schreibweisen}
+	Wir benutzen folgende Schreibweisen im Umgang mit Mengen:
+	\begin{itemize}
+		\item
+			$M = \lbrace x_1, x_2, \dots , x_n\rbrace$: Die Menge mit den Elementen $x_1, x_2, \dots, x_n$ und \emph{Kardinalität} $\# M = |M| = n$
+		\item
+			$x \in M$ : $x$ ist Element der Menge $M$
+		\item
+			$N \subset M$: $N$ ist eine \emph{Teilmenge} der Menge $M$
+	\end{itemize}
+
+	\section{Mengenoperatoren}
+	Außerdem definieren wir für Zwei Mengen $M$ und $N$
+	\begin{enumerate}[i)]
+		\item
+			die Vereinigung von $M$ und $N$:\\
+			\[
+				M \cup N = \lbrace x \mid x \in M \lor x \in N \rbrace
+			\]
+		\item
+			den Schnitt von $M$ und $N$.
+			\[
+				M \cap N = \lbrace x \mid x \in M \land x \in N \rbrace
+			\]
+		\item
+			das Komplement von $M$ in $N$.
+			\[
+				M \setminus N = \lbrace x \mid x \in M \land x \notin N \rbrace
+			\]
+	\end{enumerate}
+
+	\section{Wichtige Mengen}
+		Einige wichtige Mengen sind:
 		\begin{itemize}
 			\item
-				Die Gültigkeit der Aussage $A(n_0)$ zeigen und
+				$\emptyset = \lbrace \rbrace$, die \emph{Leere Menge}, welche keine Elemente hat.
 			\item
-				Aus der Annahme, dass die Aussage $A(n)$ für ein festes $n \in \mathbb{n}$ bereits gilt, darauf schließen, dass auch $A(n + 1)$ gilt.
-		\end{itemize}
+				$\NN = \lbrace 1, 2, 3, \dots \rbrace$, die \emph{Natürlichen Zahlen}
+			\item
+				$\ZZ = \lbrace 0, 1, -1, 2, -2, \dots \rbrace$, die \emph{Ganzen Zahlen}
+			\item
+				$\QQ = \lbrace \frac{p}{q} \mid p,q \in \ZZ, q \neq 0\rbrace$, die \emph{Rationalen Zahlen}
+			\item
+				$\RR$, die Menge der \emph{Reellen Zahlen}
+			\item
+				$\CC = \lbrace (a, b \cdot i) \mid a, b \in \RR \rbrace$
+ 		\end{itemize}
 
-		\section{Summennotation}
-		Seien $a_i$ ($i \in \mathbb{N}$) eine Familie von Zahlen. Wir führen folgende Kurzschreibweise ein:
-		\begin{equation*}
-			\sum\limits_{k=m}^n a_i = a_m + \dots + a_n
-		\end{equation*}
+ 	\section{Quantoren}
+ 	\emph{Quantoren} sind Kurzschreibweisen für in der Mathematik häufig benutzte Flosskeln. $\exists$ nennt man \emph{Existensquantor} und $\forall$ \emph Allquantor. Sei nun $X$ eine Menge und $P(x)$ eine Aussage über $x$.
+ 	\begin{itemize}
+ 		\item
+ 			$\forall \x \in X : P(x)$ für \glqq Für alle $x \in X$ gilt die Aussage $P(x)$.\grqq
+ 		\item
+ 			$\exists \x \in X : P(x)$ für \glqq Es gibt (zumindest) ein $x \in X$ für welches die Aussage $P(x)$ gilt.\grqq
+ 	\end{itemize}
 
-		\section{Satz: Gaußformel}
-		\begin{equation*}
-				\sum\limits_{k=1}^n k = \frac{n \cdot (n + 1)}{2}
-		\end{equation*}
-		\begin{proof}
-			Der Beweis erfolg einfach durch Induktion oder alternativ durch geschicktes, zweifaches Summieren obiger Summe.  
-		\end{proof}
+ 	\section{Verneinung von Quantoren}
+ 	Ausdrücke, welche Quantoren enthalten, werden Verneint, indem man den jeweiligen Existens- oder Allquantor mit dem Anderen ersetzt, und den Ausdruck dahinter verneint. Zum Beispiel:
+ 	\begin{align*}
+ 		& \neg \forall x \in X: \exists y \in Y : P (x,y)\\
+ 		=& \exists x \in X: \neg \exists y \in Y : P(x,y)\\
+ 		=& \exists x \in X: \forall y \in Y: \neg P(x,y)
+ 	\end{align*}
 
-		
+ 	\section{Vereinigung und Schnitt}
+ 	Sei $I \subseteq \NN$ eine Indexmenge und $M_i$ eine Familie von Mengen. Wir notieren
+ 	\begin{itemize}
+ 		\item
+ 			$\bigcup\limits_{i \in I} M_i = M_{i_1} \cup M_{i_2} \cup \dots = \lbrace x \mid \exists i \in I: x \in M_i\rbrace$
+ 		\item
+ 			$\bigcap\limits_{i \in I} M_i = M_{i_1} \cap M_{i_2} \cap \dots = \lbrace x \mid \forall i \in I: x \in M_i\rbrace$
+ 	\end{itemize}
+
+ 	\section{De Morgan}
+ 	Sei $M_i$ eine Familie von Mengen, so ist
+ 	\begin{itemize}
+ 		\item
+ 			 $\overline{\bigcup\limits_{i \in I} M_i} = \bigcap\limits_{i \in I} \overline{M_i} $
+ 		\item
+ 			 $\overline{\bigcap\limits_{i \in I} M_i} = \bigcup\limits_{i \in I} \overline{M_i} $
+ 	\end{itemize}
+
+ 	\section{Abbildungen}
+	 	\subsection{Definition}
+	 	Seien $X$ und $Y$ Mengen. Wir definieren eine \emph{Abbildung} oder auch \emph{Funktion}
+	 	\begin{equation*}
+	 		f: x \rightarrow Y
+	 	\end{equation*}
+	 	als eine Vorschrift, die jedem $x \in X$ genau ein $y \in Y$ zurodnet. Wir nennen dabei $X$ den \emph{Definitionsbereich} und $Y$ den \emph{Wertebereich}.
+	 	\subsection{Eigenschaften}
+	 	Wir nennen eine Abbildung $f: X \rightarrow Y$
+	 	\begin{itemize}
+	 		\item
+	 			\emph{injektiv}, wenn $\forall x_1, x_2 \in X: f(x_1) = f(x_2) \righarrow x_1 = x_2$
+	 		\item
+	 			\emph{surjektiv}, wenn $\forall y \in Y \exists x \in X: f(x) = y$
+	 		\item
+	 			\emph{bijektiv}, wenn f injektiv und surjektiv ist.
+
 
 \end{document}
