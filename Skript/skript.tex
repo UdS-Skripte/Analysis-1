@@ -1,0 +1,119 @@
+\documentclass{scrreprt}[twoside=true]
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+	\tableofcontents
+
+	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+
+	\chapter{Beweisprinzipien}
+
+	\section{Aussagenlogik}
+
+	
+
+		Die Aussagenlogik befasst sich mit \emph{Aussagen}, welche \emph{(w)ahr} oder \emph{(f)alsch} sein können. Aus den Operatoren 
+		\begin{itemize}
+			\item
+				Negation:
+				\begin{equation*}
+					\neg a =
+						\begin{cases}
+							w & \text{falls $a \equiv f$}.\\
+							f & \text{falls $a \equiv w$}.
+						\end{cases}
+				\end{equation*}
+			\item
+				Konjunktion:
+				\begin{equation*}
+					a \lor b =
+						\begin{cases}
+							w & \text{falls $a \equiv w$ oder $b \equiv w$ (oder beide)}.\\
+							f & \text{sonst}.
+						\end{cases}
+				\end{equation*}
+			\item
+				Disjunktion:
+				\begin{equation*}
+					a \land b =
+						\begin{cases}
+							w & \text{falls $a \equiv w$ und $b \equiv w$}.\\
+							f & \text{sonst}.
+						\end{cases}
+				\end{equation*}
+			\item
+				Implikation:
+				\begin{equation*}
+					a \rightarrow b =
+						\begin{cases}
+							f & \text{falls $a \equiv w$ und $b \equiv f$}.\\
+							w & \text{sonst}.
+						\end{cases}
+				\end{equation*}
+			\item
+				Äquivalenz:
+				\begin{equation*}
+					a \leftrightarrow b =
+						\begin{cases}
+							w & \text{falls $a \equiv b$}.\\
+							f & \text{sonst}.
+						\end{cases}
+				\end{equation*}
+		\end{itemize}
+		lassen sich aus bereits bestehenden aussagelogischen Ausdrücken Weitere bilden. Auch lassen sich einfach aus den Definitionen Gesetzmäßigkeiten ableiten.
+
+		\section{Axiome}
+		\emph{Axiome} sind grundliegende Aussagen, die nicht weiter zurückgeführt werden (können). Wir \emph{beweisen}, indem wir \emph{Aussagen} auf Axiome zurückführen.
+
+		\section{Direkter Beweis}
+		Ein \emph{Direkter Beweis} wird geführt, indem man eine Aussage $A$ annimmt und ausgehend von dieser eine weitere Aussage $B$ \emph{beweist}.
+
+		\subsection{Beispiel}
+		Wir wollen zeigen, dass folgende Aussage korrekt ist:
+		\begin{center}
+			Das Quadrat einer geraden Zahl ist wiederum gerade.
+		\end{center}
+		\begin{proof}
+			Sei $a \in \mathbb{N}$ eine gerade Zahl, welche sich also auch als $a = 2 \cdot k$ darstellen lässt. Betrachten wir nun das Quadrat von $a$, so gilt:
+			\begin{equation*}
+				a^2 = (2 \cdot k)^2 = 2^2 \cdot k^2 = 4 k^2 = 2 \cdot (2 k^2)
+			\end{equation*}
+			Somit hat also $a^2 = 2 \cdot (2 k^2)$ eine Zwei als Teiler und ist somit gerade.\square
+		\end{proof}
+
+		\section{Indirekter Beweis durch Kontraposition}
+		Statt die Implikation $A \rightarrow B$ zu beweisen, können wir auch $\neg B \rightarrow \neg A$ beweisen. Wir nehmen also an, dass das zu zeigende nicht gilt und folgern daraus, dass unsere Annahme nicht gilt.
+
+		\section{Widerspruch}
+		Wir können eine Aussage $A$ auch beweisen, indem wir $\neg A$ annehmen und daraus einen Widerspruch folgern.
+
+		\section{Prinzip der vollständigen Induktion}
+		Ist $A(n)$ eine Aussage mit $n \in \mathbb{N}$, so können wir diese Gültigkeit dieser Aussage für alle $n > n_0$ zeigen, indem wir
+		\begin{itemize}
+			\item
+				Die Gültigkeit der Aussage $A(n_0)$ zeigen und
+			\item
+				Aus der Annahme, dass die Aussage $A(n)$ für ein festes $n \in \mathbb{n}$ bereits gilt, darauf schließen, dass auch $A(n + 1)$ gilt.
+		\end{itemize}
+
+		\section{Summennotation}
+		Seien $a_i$ ($i \in \mathbb{N}$) eine Familie von Zahlen. Wir führen folgende Kurzschreibweise ein:
+		\begin{equation*}
+			\sum\limits_{k=m}^n a_i = a_m + \dots + a_n
+		\end{equation*}
+
+		\section{Satz: Gaußformel}
+		\begin{equation*}
+				\sum\limits_{k=1}^n k = \frac{n \cdot (n + 1)}{2}
+		\end{equation*}
+		\begin{proof}
+			Der Beweis erfolg einfach durch Induktion oder alternativ durch geschicktes, zweifaches Summieren obiger Summe.  
+		\end{proof}
+
+		
+
+\end{document}
