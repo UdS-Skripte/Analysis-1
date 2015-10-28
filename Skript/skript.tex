@@ -9,7 +9,7 @@
 
 \usepackage[hidelinks]{hyperref}
 
-\newenvironment{proof}{\emph{\ Beweis.}}{}
+\newenvironment{proof}{\emph{\\Beweis.}}{}
 
 \pagestyle{fancy}
 
@@ -307,7 +307,20 @@
 		\subsection{Überabzählbar}
 		Eine Menge $M$, die nicht abzählbar ist, nennen wir \emph{überabzählbar}.
 
-
-
+	\section{Kardinalität von $\RR$}
+	$\RR$ ist überabzählbar.
+	\begin{proof}
+		Offensichtlich genügt es zu zeigen, dass eine Teilmenge von $\RR$ überabzählbar ist, um zu zeigen, dass $\RR$ überabzählbar ist. Betrachten wir also das Intervall $[0,1]$. Wir wollen einen Widerspruchsbeweis führen. Nehmen wir also an, $\RR$ sei abzählbar. So könnten wir also alle Zahlen aus $\RR$ abzählen.\\
+		\begin{center}
+			\begin{tabular}{ll}
+				$1$ & $0.a_1 a_2 a_3 a_4 a_5 \dots$\\
+				$2$ & $0.b_1 b_2 b_3 b_4 b_5 \dots$\\
+				$3$ & $0.c_1 c_2 c_3 c_4 c_5 \dots$\\
+				$4$ & $0.d_1 d_2 d_3 d_4 d_5 \dots$\\
+				$\vdots$ & $\ddots$  
+			\end{tabular}
+		\end{center}
+		Konstruieren wir nun eine Zahl $z$, welche stehts in der $n-ten$ Nachkommastelle mit der $n-ten$ Zahl der Liste \emph{nicht} übereinstimmt. Also kann $z$ nicht die erste Zahl der Liste sein, da sie in der ersten Nachkommastelle nicht mit ihr übereinstimmt. Dies läuft darauf hinaus, dass $z$ mit jeder Zahl aus der Liste in der $n-ten$ Nachkommastelle \emph{nicht} übereinstimmt. Also ist $z$ nicht in der Liste. Somit ist $[0,1]$ nicht abzählbar und somit ist $\RR$ nicht abzählbar.
+	\end{proof}
 
 \end{document}
