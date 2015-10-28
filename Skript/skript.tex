@@ -5,16 +5,20 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumerate}
 \usepackage{ngerman}
+\usepackage{fancyhdr}
 
 \usepackage[hidelinks]{hyperref}
 
 \newenvironment{proof}{\emph{\ Beweis.}}{}
+
+\pagestyle{fancy}
 
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\CC}{\mathbb{C}}
+\newcommand{\lecturedate}[1]{\rfoot{Lecture on: #1}}
 
 \begin{document}
 
@@ -27,11 +31,11 @@
 
 	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
 
+	\lecturedate{21.10.2015}
+
 	\chapter{Beweisprinzipien}
 
-
-	\section{Aussagenlogik}	
-
+	\section{Logik}	
 	Die Aussagenlogik befasst sich mit \emph{Aussagen}, welche \emph{(w)ahr} oder \emph{(f)alsch} sein können. Aus den Operatoren 
 	\begin{itemize}
 		\item
@@ -101,13 +105,14 @@
 		Somit hat also $a^2 = 2 \cdot (2 k^2)$ eine Zwei als Teiler und ist somit gerade.$\square$
 	\end{proof}
 
-	\section{Indirekter Beweis durch Kontraposition}
+	\section{Kontraposition}
 	Statt die Implikation $A \rightarrow B$ zu beweisen, können wir auch $\neg B \rightarrow \neg A$ beweisen. Wir nehmen also an, dass das zu zeigende nicht gilt und folgern daraus, dass unsere Annahme nicht gilt.
 
 	\section{Widerspruch}
 	Wir können eine Aussage $A$ auch beweisen, indem wir $\neg A$ annehmen und daraus einen Widerspruch folgern.
 
-	\section{Prinzip der vollständigen Induktion}
+	\section{Induktion}
+	Das Prinzip der \emph{vollständigen Induktion} besagt: \\
 	Ist $A(n)$ eine Aussage mit $n \in \NN$, so können wir diese Gültigkeit dieser Aussage für alle $n > n_0$ zeigen, indem wir
 	\begin{itemize}
 		\item
@@ -162,7 +167,9 @@
 		Der Beweis erfolgt leicht durch Induktion über n.
 	\end{proof}
 
-	\chapter{Mengen und Sprache der Mengen}
+	\lecturedate{26.10.2015}
+
+	\chapter{Mengen}
 
 	\section{Mengen nach Cantor}
 	Cantos naive Mengendefinition besagte:\\
@@ -217,57 +224,90 @@
 				$\CC = \lbrace (a, b \cdot i) \mid a, b \in \RR \rbrace$
  		\end{itemize}
 
- 	\section{Quantoren}
- 	\emph{Quantoren} sind Kurzschreibweisen für in der Mathematik häufig benutzte Flosskeln. $\exists$ nennt man \emph{Existensquantor} und $\forall$ \emph Allquantor. Sei nun $X$ eine Menge und $P(x)$ eine Aussage über $x$.
- 	\begin{itemize}
- 		\item
- 			$\forall \x \in X : P(x)$ für \glqq Für alle $x \in X$ gilt die Aussage $P(x)$.\grqq
- 		\item
- 			$\exists \x \in X : P(x)$ für \glqq Es gibt (zumindest) ein $x \in X$ für welches die Aussage $P(x)$ gilt.\grqq
- 	\end{itemize}
+	\section{Quantoren}
+	\emph{Quantoren} sind Kurzschreibweisen für in der Mathematik häufig benutzte Flosskeln. $\exists$ nennt man \emph{Existensquantor} und $\forall$ \emph Allquantor. Sei nun $X$ eine Menge und $P(x)$ eine Aussage über $x$.
+	\begin{itemize}
+		\item
+			$\forall \x \in X : P(x)$ für \glqq Für alle $x \in X$ gilt die Aussage $P(x)$.\grqq
+		\item
+			$\exists \x \in X : P(x)$ für \glqq Es gibt (zumindest) ein $x \in X$ für welches die Aussage $P(x)$ gilt.\grqq
+	\end{itemize}
 
- 	\section{Verneinung von Quantoren}
- 	Ausdrücke, welche Quantoren enthalten, werden Verneint, indem man den jeweiligen Existens- oder Allquantor mit dem Anderen ersetzt, und den Ausdruck dahinter verneint. Zum Beispiel:
- 	\begin{align*}
+	\section{Verneinung von Quantoren}
+	Ausdrücke, welche Quantoren enthalten, werden Verneint, indem man den jeweiligen Existens- oder Allquantor mit dem Anderen ersetzt, und den Ausdruck dahinter verneint. Zum Beispiel:
+	\begin{align*}
  		& \neg \forall x \in X: \exists y \in Y : P (x,y)\\
- 		=& \exists x \in X: \neg \exists y \in Y : P(x,y)\\
- 		=& \exists x \in X: \forall y \in Y: \neg P(x,y)
- 	\end{align*}
+		=& \exists x \in X: \neg \exists y \in Y : P(x,y)\\
+		=& \exists x \in X: \forall y \in Y: \neg P(x,y)
+	\end{align*}
 
- 	\section{Vereinigung und Schnitt}
- 	Sei $I \subseteq \NN$ eine Indexmenge und $M_i$ eine Familie von Mengen. Wir notieren
- 	\begin{itemize}
- 		\item
- 			$\bigcup\limits_{i \in I} M_i = M_{i_1} \cup M_{i_2} \cup \dots = \lbrace x \mid \exists i \in I: x \in M_i\rbrace$
- 		\item
- 			$\bigcap\limits_{i \in I} M_i = M_{i_1} \cap M_{i_2} \cap \dots = \lbrace x \mid \forall i \in I: x \in M_i\rbrace$
- 	\end{itemize}
+	\section{Vereinigung und Schnitt}
+	Sei $I \subseteq \NN$ eine Indexmenge und $M_i$ eine Familie von Mengen. Wir notieren
+	\begin{itemize}
+		\item
+			$\bigcup\limits_{i \in I} M_i = M_{i_1} \cup M_{i_2} \cup \dots = \lbrace x \mid \exists i \in I: x \in M_i\rbrace$
+		\item
+			$\bigcap\limits_{i \in I} M_i = M_{i_1} \cap M_{i_2} \cap \dots = \lbrace x \mid \forall i \in I: x \in M_i\rbrace$
+	\end{itemize}
 
- 	\section{De Morgan}
- 	Sei $M_i$ eine Familie von Mengen, so ist
- 	\begin{itemize}
- 		\item
- 			 $\overline{\bigcup\limits_{i \in I} M_i} = \bigcap\limits_{i \in I} \overline{M_i} $
- 		\item
- 			 $\overline{\bigcap\limits_{i \in I} M_i} = \bigcup\limits_{i \in I} \overline{M_i} $
- 	\end{itemize}
+	\section{De Morgan}
+	Sei $M_i$ eine Familie von Mengen, so ist
+	\begin{itemize}
+		\item
+			 $\overline{\bigcup\limits_{i \in I} M_i} = \bigcap\limits_{i \in I} \overline{M_i} $
+		\item
+			 $\overline{\bigcap\limits_{i \in I} M_i} = \bigcup\limits_{i \in I} \overline{M_i} $
+	\end{itemize}
 
- 	\section{Abbildungen}
-	 	\subsection{Definition}
+	\section{Abbildungen}
+	\subsection{Definition}
 	 	Seien $X$ und $Y$ Mengen. Wir definieren eine \emph{Abbildung} oder auch \emph{Funktion}
 	 	\begin{equation*}
-	 		f: x \rightarrow Y
+	 		f: x \longrightarrow Y
 	 	\end{equation*}
 	 	als eine Vorschrift, die jedem $x \in X$ genau ein $y \in Y$ zurodnet. Wir nennen dabei $X$ den \emph{Definitionsbereich} und $Y$ den \emph{Wertebereich}.
 	 	\subsection{Eigenschaften}
-	 	Wir nennen eine Abbildung $f: X \rightarrow Y$
+	 	Wir nennen eine Abbildung $f: X \longrightarrow Y$
 	 	\begin{itemize}
 	 		\item
-	 			\emph{injektiv}, wenn $\forall x_1, x_2 \in X: f(x_1) = f(x_2) \righarrow x_1 = x_2$
+	 			\emph{injektiv}, wenn $\forall x_1, x_2 \in X: f(x_1) = f(x_2) \rightarrow x_1 = x_2$
 	 		\item
-	 			\emph{surjektiv}, wenn $\forall y \in Y \exists x \in X: f(x) = y$
+	 			\emph{surjektiv}, wenn $\forall y \in Y : \exists x \in X: f(x) = y$
 	 		\item
 	 			\emph{bijektiv}, wenn f injektiv und surjektiv ist.
+		\end{itemize}
+
+	\lecturedate{28.10.2015}
+
+	\section{Komposition}
+	Seien $f: x \longrightarrow Y$ und $g: Y \longrightarrow Z$ Abbildungen. Wir definieren die \emph{Komposition} $g \circ f : X \longrightarrow Z$ definiert durch
+	\begin{equation*}
+		g \circ f := g(f(x)) \text{ für } x \in X.	
+	\end{equation*}
+
+	\section{Identitätsabbildung}
+	Wir nennen $id_x : X \rightarrow X$ die \emph{Identitätsabbildung} auf $X$ mit
+	\begin{equation*}
+		id_X (x) = X, \forall x \in X
+	\end{equation*}
+	Sie fungier als das Neutrale Element der Komposition von Funktionen.
+
+	\section{Umkehrabbildung}
+	Sei $f : X \rightarrow Y$ eine Bijketion. Wir definieren die \emph{Umkehrabbildung} $f^{-1}$ von $f$ durch
+	\begin{equation*}
+		f^{-1} : Y \longrightarrow X, f^{-1}(y) = x \text{ mit } f(x) = y 
+	\end{equation*} 
+	Woraus offensichtlich folgt, dass $f \circ f^{-1} = id_X$
+
+	\section{Kardinalitäten}
+		\subsection{Definition}
+		Zwei Mengen $N$ und $M$ sind \emph{gleichmächtig}, falls eine Bijektion $f: N \longrightarrow M$ existiert.
+		\subsection{Abzählbar}
+		Eine Menge $M$ heißt \emph{abzählbar}, falls sie entweder \emph{endlich} oder \emph{gleichmächtig wie $\NN$} ist.
+		\subsection{Überabzählbar}
+		Eine Menge $M$, die nicht abzählbar ist, nennen wir \emph{überabzählbar}.
+
+
 
 
 \end{document}
