@@ -5,6 +5,7 @@
 *.log
 *.synctex.gz
 *.toc
+*.out
 
 # I can compile on my own
 *.pdf
