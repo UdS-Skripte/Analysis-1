@@ -1,0 +1,265 @@
+\documentclass{scrreprt}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[hidelinks]{hyperref}
+
+\newenvironment{proof}{\emph{\\Beweis.}}{$\square$}
+
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+
+\begin{document}
+
+	\title{Analysis 1}
+ 	\author{Dominic Zimmer}
+ 	\subtitle{Übungsblatt 2, Abgabe}
+ 	%\date{18. Mai 1999}
+  	\maketitle 
+
+	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+
+	\section*{Aufgabe 1}
+	\begin{samepage}
+	\begin{enumerate}[a)]
+		\item 
+			Zu zeigen: $\forall n \in \NN_0$ mit $x \in \RR \setminus \lbrace 1 \rbrace$:
+			\[
+				\sum_{k=0}^n x^k = \frac{1 - x^{n + 1}}{1-x}
+			\]
+			\begin{proof}
+				Beweis durch Vollständige Induktion über $n$. Induktionsanfang $n=0$:
+				\[
+					\sum\limits_{k=0}^0 x^k = 1 = \frac{1-x^{1}}{1-x^{1}} = \frac{1 - x^{n + 1}}{1-x}
+				\]
+				Induktionsschritt $n \leadsto n+1$.\\
+				Sei die Behauptung bereits bewiesen für $n \in \NN$.
+				\begin{align*}
+					\sum_{k=0}^{n+1} x^k = & \sum_{k=0}^n x^k + x^{n+1}\\
+					\overset{IV}{=} &\frac{1 - x^{n + 1}}{1-x} + x^{n+1})\\
+					= & \frac{1 - x^{n + 1}}{1-x} + \frac{x^{n+1} \cdot (1-x)}{1-x}\\
+					= & \frac{1 - x^{n + 1} + (x^{n+1} - x^{n+2})}{1-x}\\
+					= & \frac{1 - x^{(n+1) + 1}}{1-x}
+				\end{align*}
+				Nach dem Prinzip der Vollständigen Induktion folgt die Behauptung.
+			\end{proof}
+		\item 
+			Zu zeigen: $\forall n \in \NN_{>0}:$
+			\[
+				7^{n+1} + 8^{2n-1}
+			\] 
+			ist durch 57 teilbar.
+			\begin{proof}
+				Beweis durch Vollständige Induktion über $n$. Induktionsanfang $n=1$:
+				\[
+					7^{n+1} + 8^{2n-1} = 7^{2} + 8 = \underbrace{57}_{\text{durch 57 teilbar}}
+				\]
+				Induktionsschritt $n \leadsto n+1$.\\
+				Sei die Behauptung bereits bewiesen für $n \in \NN$.
+				\begin{align*}
+					7^{(n+1) +1} + 8^{2(n+1)-1} = & 7^{n+2} + 8^{2n+1}\\
+					= &7 \cdot 7^{n+1} + 8^2 \cdot 8^{2n-1}\\
+					= &7 \cdot 7^{n+1} + (57+7) \cdot 8^{2n-1}\\
+					= &\underbrace{7 \cdot (\underbrace{7^{n+1} + 8^{2n -1}}_{\text{durch 57 teilbar (IV)}}) + \underbrace{57 \cdot (8^{2n-1})}_{\text{57 als Faktor}}}_{\text{$\Rightarrow $durch 57 teilbar}}
+				\end{align*}
+				Nach dem Prinzip der Vollständigen Induktion folgt die Behauptung.
+			\end{proof}
+	\end{enumerate}
+	\end{samepage}
+
+	\section*{Aufgabe 2}
+	\begin{enumerate}[a)]
+		\item
+			\begin{align*}
+				A \setminus (A \setminus B) =& A \setminus \lbrace x \mid x \in A \land x \notin B\rbrace\\
+				=& \lbrace x \mid x \in A \land x \notin \lbrace y \mid y \in A \land y \notin B \rbrace \rbrace\\
+				=& \lbrace x \mid x \in A \land x \in \lbrace y \mid y \notin A \lor y \in B \rbrace \rbrace\\
+				=& \lbrace x \mid x \in A \land x \in B\rbrace\\
+				=& A \cap B
+			\end{align*}
+		\item
+			\begin{align*}
+				(A \cup B) \cap C = & \lbrace x \mid x \in A \lor x \in B \rbrace \cap \lbrace x \mid x \in C\rbrace\\
+				= & \lbrace x \mid (x \in A \lor x \in B )\land x \in C\rbrace \\
+				= & \lbrace x \mid (x \in A \land x \in C) \lor( x \in B \land x \in C)\rbrace \\
+				= & (A \cap C) \cup (B \cap C)
+			\end{align*}
+		\item
+			\begin{align*}
+				(A \cap B) \cup C = & \lbrace x \mid x \in A \land x \in B \rbrace \cup \lbrace x \mid x \in C\rbrace\\
+				= & \lbrace x \mid (x \in A \land x \in B )\lor x \in C\rbrace \\
+				= & \lbrace x \mid (x \in A \lor x \in C) \land( x \in B \lor x \in C)\rbrace \\
+				= & (A \cup C) \cap (B \cup C)
+			\end{align*}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Aufgabe 3}
+	\begin{enumerate}[a)]
+		\item
+			Wir unterscheiden in $f_n \colon \RR \to \RR$ zwischen drei Fällen:
+			\begin{itemize}
+				\item
+					$n = 0$:\\
+					Wir betrachten nun die Konstante Funktion $f_0(x) = x^0 = 1$, welche
+					\begin{itemize}
+						\item
+							\emph{nicht injektiv} ist, da $\forall x_1, x_2 \in \RR: f(x_1) = 1 = f(x_2)$.
+						\item
+							\emph{nicht surjektiv} ist, da $\nexists x \in \RR: f(x) = 2$.
+						\item
+							folglich \emph{nicht bijektiv} ist.
+					\end{itemize}
+				\item
+					$n \text{ mod }  2 = 0$:\\
+					Nun betrachten wir $f_n(x) = x^{2k}$ mit $k \in \NN$. $f_n$ ist somit
+					\begin{itemize}
+						\item
+							\emph{nicht injektiv}, da $\forall x \in \RR: f(x) = x^{2k} = (-x)^{2k} = f(-x)$
+						\item
+							\emph{nicht surjektiv}, da $\nexists x \in \RR: f(x) = -1$
+						\item
+							folglich \emph{nicht bijektiv}.
+					\end{itemize}
+				\item
+					$n \text{ mod }  2 = 1$:\\
+					Nun betrachten wir $f_n(x) = x^{2k - 1}$ mit $k \in \NN$. $f_n$ ist somit
+					\begin{itemize}
+						\item
+							\emph{injektiv}, da $f_n$ offensichtlich monoton wächst
+						\item
+							\emph{surjektiv}, da $\lim\limits_{x \to -\infty} = -\infty$ und $\lim\limits_{x \to \infty} = \infty$ nach dem Zwischenwertsatz.	
+						\item
+							folglich \emph{bijektiv}.
+					\end{itemize}
+			\end{itemize}
+			\item
+				$f: \lbrace 1,2, \dots, n\rbrace \to \lbrace 0, 1, 2, \dots , n^2 -1 \rbrace$ mit $f(x) = x^2 -1$ ist
+				\begin{itemize}
+						\item
+							\emph{injektiv}, da $f|_{[1, n]}$ offensichtlich streng monoton steigt.
+						\item
+							\emph{nicht surjektiv}, da $\nexists x \in \lbrace 1, 2, \dots, n\rbrace: x^2 - 1 = 2$
+						\item
+							folglich \emph{nicht bijektiv}.
+				\end{itemize}
+			\item
+				$f: \lbrace 0, 1, \dots, n \rbrace \to \lbrace 1, 2, \dots , \n+1 \rbrace$ mit $f(x) = x+1$ ist offensichtlich nur eine im Wertebereich geshiftete Identitätsabbildung, also
+				\begin{itemize}
+					\item
+						\emph{bijektiv}, da $id_x$ nach Konstruktion bijektiv ist
+					\item
+						\emph{injektiv} und \emph{surjektiv} folglich.
+				\end{itemize}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Aufgabe 4}
+	Seien $f \colon X \to Y$ und $g \colon Y \to Z$ Abbildungen.
+	\begin{enumerate}[a)]
+		\item
+			\begin{enumerate}[(i)]
+				\item
+					Zu zeigen: \glqq$g \circ f \colon X \to Z$ injektiv\grqq \ impliziert \glqq$f$ injektiv\grqq.\\
+					Da $g \circ f$ injektiv ist, lässt sich eindeutig von g(f(x)) auf f(x) schließen. Somit gilt
+					\begin{align*}
+						& g \circ f (x) = g \circ f (y) \Rightarrow x = y\\
+						\Leftrightarrow & g(f(x)) = g(f(y)) \Rightarrow x = y\\
+						\Rightarrow & f(x) = f(y) \Rightarrow x = y
+					\end{align*}
+					Also ist f auch injektiv.
+				\item
+					Zu zeigen: \glqq$g \circ f \colon X \to Z$ surjektiv\grqq \  impliziert \glqq$g$ surjektiv\grqq.\\
+					Da $g \circ f$ surjektiv ist, gilt
+					\begin{align*}
+						&\forall x \in X: \exists z \in Z: g \circ f (x) = z\\
+						&\forall x \in X: \exists z \in Z: g(f (x)) = z\\
+						&\text{Wählt man nun $\hat{x} := f(x) \in Y$, erhält man}\\
+						&\forall \hat{x} \in Y: \exists z \in Z: g(\hat{x}) = z
+					\end{align*}
+					Also ist g auch surjektiv.
+			\end{enumerate}
+		\item
+			Da $id_X$ die Identitätsabbildung ist, ist sie bijektiv. Insbesondere ist $id_X$ also \emph{injektiv} und \emph{surjektiv}. Aus Aufgabenteil (a) folgt nun, dass $f$ injektiv und $g$ surjektiv sind.\\
+			$f$ muss jedoch nicht \emph{surjektiv} und $g$ nicht \emph{injektiv} sein. Im folgenden Beispiel gilt $g \circ f = id_x$, dennoch ist $f$ nicht surjektiv und $g$ nicht injektiv.
+			\begin{align*}
+				f \colon \lbrace 1,2,3 \rbrace  \to  \lbrace 1,2,3,4,5,6\rbrace, f(x) = 2 \cdot x\\
+				g \colon \lbrace 1,2,3,4,5,6 \rbrace   \to  \lbrace 1,2,3\rbrace, g(x) = \lceil \frac{x}{2}\rceil
+			\end{align*}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Aufgabe 5}
+	\begin{enumerate}[a)]
+		\item
+			Zu zeigen: $|2^{N}| = 2^{|N|}$
+			\begin{proof}
+				Beweis durch vollständige Induktion über die Kardinalität einer Menge $N$. Induktionsanfang: $|N| = 0$:
+				\[
+					|2^{N}| = |2^{\emptyset}| = |\lbrace \emptyset \rbrace| = 1 = 2^{0} = 2^{|\emptyset|} 
+				\]
+				Induktionsschritt $n \leadsto n+1$.\\
+				Sei nun $|N| = n$ und die Behauptung bereits gezeigt für $N$.\\
+				Betrachten wir nun $M := N \cupdot \lbrace x \rbrace$. Offensichtlich gilt:
+				\[
+					2^M = 2^{N \cupdot \lbrace x \rbrace} = 2^N \cupdot \lbrace x \mid x = A \cupdot \lbrace x \rbrace, A \in 2^N  \rbrace
+				\]
+				Wir zerlegen $2^M$ also in zwei disjunkte Mengen: die Mengen, die aus $2^N$ stammen und die Mengen, die $x$ enthalten. Man sieht leicht, dass beide Mengen gleichmächtig sind.
+				Somit können wir für die Kardinalitäten folgern:
+				\[
+					|2^M| = | 2^N \cupdot \lbrace x \mid x = A \cupdot \lbrace x \rbrace, A \in 2^N  \rbrace| \overset{\text{IV}}{=} 2^{|N|} + 2 ^{|N|} = 2^{|N|+1}
+				\]
+				Nach dem Prinzip der Vollständigen Induktion folgt die Behauptung.
+			\end{proof}
+		\item
+			Zu zeigen: Die Potenzmenge der Natürlichen Zahlen ist überabzählbar.
+			\begin{proof}
+				Beweis durch Widerspruch. Wir nehmen an, dass die Potenzmenge der Natürlichen abzählbar ist. Somit könnten wir die Potenzmenge der natürlichen Zahlen auflisten.
+				Wir kodieren nun binär Teilmengen von $\NN$, indem wir entscheiden, ob eine Zahl $x$ in der Menge enthalten ist, oder nicht.\\
+				\begin{center}
+					\begin{tabular}{c | c | c | c | c | c | c}
+						$A_i \subseteq \NN$ & 1 & 2 & 3 & 4 & 5 &$\dots$\\
+						\hline
+						$A_1 = \lbrace 2, 3, \dots \rbrace$ & 0 & 1 & 1 & 0 & 0 &\\
+						$A_2 = \lbrace 1, 4,5,  \dots \rbrace$ & 1 & 0 & 0 & 1 & 1 &\\
+						$A_3 = \lbrace 3, 4,  \dots \rbrace$ & 0 & 0 & 1 & 1 & 0 &\\
+					\end{tabular}
+				\end{center}
+				Konstruieren wir nun eine Menge $B \subseteq 2^{\NN}$
+				\[
+					B = \bigcupdot\limits_{A_i \subseteq \NN} \overline{A_i} \cap i
+				\]
+				sehen wir, dass sich $B$ (nach Konstruktion) von jedem $A_i$ in der Liste gerade in der Zahl $i$ unterscheided. Also ist B nicht in der Liste enthalten.
+			\end{proof}
+		\end{enumerate}
+
+\end{document}
