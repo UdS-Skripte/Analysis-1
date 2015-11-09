@@ -1,0 +1,142 @@
+\documentclass{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{ngerman}
+%\usepackage[german]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[hidelinks]{hyperref}
+
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+
+\begin{document}
+
+	\title{Analysis 1}
+ 	\author{Dominic Zimmer}
+ 	\subtitle{Übungsblatt 3, Abgabe}
+ 	%\date{18. Mai 1999}
+ 	\publishers{Übungsgruppe: Rami Ahmad}
+  	\maketitle 
+
+	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+
+	\section*{Aufgabe 1}
+	\begin{enumerate}[(a)]
+		\item
+			Zu zeigen: Sind $M_1, \dots, M_l$ abzählbare Mengen, so ist auch $M_1 \times \dots \times M_l$ abzählbar.
+			\begin{proof}
+				Beweis durch Induktion über die Mengen $M_i$ mit $i \in \lbrace 1, \dots, l\rbrace$.\\
+				Induktionsanfang:\\
+				$ i = 1$:
+				$M_1$ ist bereits abzählbar.\\
+				$i = 2$ (eigentlich nicht notwendig): $M_1 \times M_2$ ist nach \emph{Cantors erstem Diagonalargument} abzählbar, da $M_1$ und $M_2$ abzählbare Mengen sind.\\
+				Induktionsvorraussetzung: Sei $M_1 \times M_2 \times \dots \times M_n$ abzählbar für ein festes $n \in \NN$. (Da $l$ fest, sei $n < l$, aber das ist vernachlässigbar.)\\
+				Induktionsschritt: $n \leadsto n+1$\\
+				Wir betrachten
+				\begin{align*}
+					\underbrace{\underbrace{M_1 \times M_2 \times \dots \times M_n}_\text{abzählbar nach I.V.}\times M_{n+1}}_\text{abzählbar nach...}
+				\end{align*}
+				\emph{Cantors erstem Diagonalargument} mit den abzählbaren Mengen $M_1 \times \dots \times M_n$ und $M_{n+1}$.
+			\end{proof}
+		\item
+			Zu zeigen: Sei $\emptyset \neq I$ eine abzählbare Indexmenge und $M_i$ $(i \in I)$ eine Familie abzählbarer Mengen. So ist
+			\begin{align*}
+				M := \bigcup\limits_{i \in I} M_i
+			\end{align*}
+			abzählbar.
+			\begin{proof}
+				Ohne Einschränkung der Allgemeinheit konstruieren wir abzählbare Mengen $M_i = \lbrace i^1, i^2, i^3, i^4, \dots \rbrace$ und betrachten die abzählbare Indexmenge $P = \lbrace x \mid \text{$x$ ist eine Primzahl}\rbrace$. Die Abzählbarkeit von $P$ folgt daraus, dass es unendlich viele Primzahlen gibt ($\rightarrow$ Nebenschluss). Für unterschiedliche Primahlen $p$ und Exponenten $e$ ist die Darstellung $p^e$ nach der Primfaktorzerlegung eindeutig. Somit ist
+				\begin{align*}
+					M' := \bigcup\limits_{p \in P} M_p \subseteq P \subseteq \NN
+				\end{align*}
+				eine abzählbare Menge, da $M'$ offensichtlich eine Teilmenge der abzählbaren Menge $\NN$ ist.
+			\end{proof}
+	\end{enumerate}
+	\pagebreak
+	Nebenschluss:\\
+	Behauptung: Es gibt unendlich viele Primzahlen.
+	\begin{proof}
+		Beweis durch Widerspruch. Wir nehmen an, es gäbe endlich viele, durchnummeriere Primzahlen $p_i$ mit $0 < i < n$ und $i \in \NN$. Betrachten wir nun
+		\begin{align*}
+			q' := \prod\limits_{0 < i < n} p_i,
+		\end{align*}
+	\end{proof}
+	so ist $q'$ das Produkt aller Primzahlen. Insbesondere teilt jede Primzahl $p_i$ somit $q$ restlos. Daraus folgt, dass $q := q' + 1$ von jeder Primzahl mit Rest 1 geteilt wird, also keine trivialen Teiler besitzt. Somit ist $q \in \NN$ eine weitere Primzahl und unsere Annahme ist widerlegt. Somit gibt es unendlich viele Primzahlen in $\NN$. Da $\NN$ abzählbar ist, gibt es somit auch nur abzählbar viele Primzahlen.
+		
+	\section*{Aufgabe 2}
+	Sei $K$ ein angeordneter Körper. Für alle $a,b \in K$ gilt zu zeigen:
+		\begin{enumerate}[(a)]
+			\item
+				\begin{align*}
+					\bigl| \left|a\right| - \left|b\right| \bigr| \leq |a -b|
+				\end{align*}
+				\begin{proof}
+				Wir machen eine erschöpfende Fallunterscheidung für
+					\begin{equation*}
+						\begin{aligned}
+							a \geq b:\\\\
+							&\bigl| \left|a\right| - \left|b\right| \bigr| & \leq& |a -b|\\
+							\text{da $a \geq b$ } \Leftrightarrow &| a | - | b | & \leq& | a - b | \\
+							\Leftrightarrow & | a - b + b | - | b | & \leq& | a - b |\\
+							\Leftrightarrow & | a - b + b | & \leq& | a - b | + | b |\\
+						\end{aligned}
+						\begin{aligned}
+							a < b:\\
+							&\bigl| \left|a\right| - \left|b\right| \bigr| & \leq& |a -b|\\
+							\text{da $a < b$ } \Leftrightarrow &| b | - | a | & \leq& | a - b | \\
+							\Leftrightarrow & | b - a + a | - | a | & \leq& | a - b |\\
+							\Leftrightarrow & | b - a + a | & \leq& | a - b | + | a |\\
+							\Leftrightarrow & | b - a + a | & \leq& | b - a | + | a |\\
+						\end{aligned}
+					\end{equation*}
+					Die erste Ungleichung ergibt sich aus Anwendung der \emph{Dreiecksungleichung} für $|a - b|$ und $|b|$, die Zweite aus Anwendung der \emph{Dreiecksungleichung} für $|b-a|$ und $|a|$.
+				\end{proof}
+			\item
+				Seien nun $a>0$ und $b>0$,
+				\begin{align*}
+					\frac{a^2}{b} + \frac{b^2}{a} \geq a + b
+				\end{align*}
+				\begin{proof}
+
+				\end{proof}
+		\end{enumerate}
+
+	\section*{Aufgabe 4}
+		Bestimme die Grenzwerte für $n \to \infty$ von:
+			\begin{enumerate}[(a)]
+				\item
+					\begin{align*}
+						(a_n) =& \frac{2n^2}{n^2 + 3n + 1}\\
+						= & \frac{2}{1 + \frac{3}{n} + \frac{1}{n^2}} \xrightarrow{n \to \infty} \frac{2}{1 + 0 + 0} = 2
+					\end{align*}
+				\item
+					\begin{align*}
+						(b_n) =& \frac{4 \cdot 7^n  - 3 \cdot 7^{2n}}{2 \cdot 7^{n-1} + 5 \cdot 7^{2n -1}}\\
+						= & \frac{\frac{4}{7^n}  - 3 }{\frac{2}{7^{n+1}} + \frac{5}{7}} \xrightarrow{n \to \infty} \frac{0 - 3}{0 + \frac{5}{7}} = -\frac{21}{5}
+					\end{align*}
+			\end{enumerate}
+\end{document}
