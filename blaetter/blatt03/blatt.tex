@@ -77,7 +77,7 @@
 			\end{proof}
 	\end{enumerate}
 	\pagebreak
-	Nebenschluss:\\
+	Zu Aufgabe 1: Nebenschluss:\\
 	Behauptung: Es gibt unendlich viele Primzahlen.
 	\begin{proof}
 		Beweis durch Widerspruch. Wir nehmen an, es gäbe endlich viele, durchnummeriere Primzahlen $p_i$ mit $0 < i < n$ und $i \in \NN$. Betrachten wir nun
@@ -115,15 +115,26 @@
 					\end{equation*}
 					Die erste Ungleichung ergibt sich aus Anwendung der \emph{Dreiecksungleichung} für $|a - b|$ und $|b|$, die Zweite aus Anwendung der \emph{Dreiecksungleichung} für $|b-a|$ und $|a|$.
 				\end{proof}
+			\pagebreak
 			\item
 				Seien nun $a>0$ und $b>0$,
 				\begin{align*}
 					\frac{a^2}{b} + \frac{b^2}{a} \geq a + b
 				\end{align*}
 				\begin{proof}
-
+					\begin{align*}
+						\frac{a^2}{b} + \frac{b^2}{a} &\geq a + b\\
+						\frac{a^3 + b^3}{ab} &\geq a+b\\
+						(a+b)^3 - 3(a b^2 + a^2 b) &\geq (a+b) ab\\
+						(a+b)^3 & \geq 4(a b^2 + a^2 b)\\
+						(a+b)^3 & \geq a b^2 + a^2 b\\
+						a^3 + b^3 & \geq -2(a b^2 + a^2 b)\\
+						\underbrace{a^3 + 2(a b^2 + a^2 b) + b^3}_\text{$> 0$, da $a, b > 0$} &\geq 0
+					\end{align*}
 				\end{proof}
 		\end{enumerate}
+
+	\section*{Aufgabe 3}
 
 	\section*{Aufgabe 4}
 		Bestimme die Grenzwerte für $n \to \infty$ von:
@@ -138,5 +149,46 @@
 						(b_n) =& \frac{4 \cdot 7^n  - 3 \cdot 7^{2n}}{2 \cdot 7^{n-1} + 5 \cdot 7^{2n -1}}\\
 						= & \frac{\frac{4}{7^n}  - 3 }{\frac{2}{7^{n+1}} + \frac{5}{7}} \xrightarrow{n \to \infty} \frac{0 - 3}{0 + \frac{5}{7}} = -\frac{21}{5}
 					\end{align*}
+				\item
+					Sei $P_n \in P[n]$ ein Polynom der Variable $n$ mit Koeffizienten in $\RR$. Sei außerdem $P_n \in O(n^{41})$
+					\begin{align*}
+						(b_n) =& \frac{n^{42} + 23n^7 + 2n^4 + 6}{((n+1)^2 + 5)^{21}}\\
+						=& \frac{n^{42} + 23n^7 + 2n^4 + 6}{(n^2 + 2n + 6)^{21}}\\
+						=& \frac{n^{42} + 23n^7 + 2n^4 + 6}{n^{42} + P[n]}\\
+						=& \frac{1 + \frac{23}{n^{35}} + \frac{2}{n^{38}} + \frac{6}{n^{42}}}{1 + \frac{P[n]}{n^{42}}}\xrightarrow{n \to \infty} \frac{1 + 0 + 0 + 0}{1 + 0 + \dots + 0} = \frac{1}{1} = 1
+					\end{align*}
 			\end{enumerate}
+
+\pagebreak
+	\section*{Aufgabe 5}
+		\begin{enumerate}[(a)]
+			\item
+				$(a_n)_{n \in \NN}$ konvergiert gegen a. Es ist zu zeigen, dass $(b_n)_{n \in \NN}$ mit
+				\begin{align*}
+					(b_n) := \frac{1}{n} \sum\limits_{k = 1}^{n} a_k
+				\end{align*}
+				ebenfalls gegen $a$ konvergiert. Wir betrachten also:
+				\begin{align*}
+					|b_n - a| = &\left|\left(\frac{1}{n} \sum\limits_{k=1}^{n} a_k \right) - a \right| \\
+					= & \left|\left( \frac{1}{n} \sum\limits_{k=1}^{n} (a_k - a) \right) \right|\\
+					\text{$\Delta$ - Ungleichung: }\leq & \left( \frac{1}{n} \sum\limits_{k=1}^{n} |a_k - a| \right)\\
+				\end{align*}
+				Für alle $\varepsilon > 0$ finden wir - da $a_n$ konvergiert - ein $N \in \NN$, ab dem alle $n \in \NN, n > N$ die Bedingung $|a_n - a| < \frac{\varepsilon}{2}$ erfüllen. Wir zerteilen nun die Summe in die Glieder, welche das $\varepsilon$-Kriterium erfüllen und jene, die es nicht tun. (Wir wählen hier außerdem $\frac{\varepsilon}{2}$ als Schranke, dass die Rechnung am Ende korrekt aufgeht. Man könnte auch später anmerken, dass es genügt, wenn $|b_n - a| < 2\varepsilon$ ist, aber erste Variante ist Konvention.)
+				\begin{align*}
+					= & \frac{1}{n} \left( \sum\limits_{k=1}^{N} |a_k - a| + \sum\limits_{k=N + 1}^{n} |a_k - a| \right)\\
+					\leq &  \frac{1}{n} \underbrace{\left(\sum\limits_{k=1}^{N} |a_k - a|\right)}_\text{:= c}  + \frac{n - N}{n} \cdot \frac{\varepsilon}{2}\\
+					\leq &  \frac{1}{n} \left(\sum\limits_{k=1}^{N} |a_k - a|\right)  + \frac{\varepsilon}{2}
+				\end{align*}
+				Nun möchten wir den Ausdruck $\frac{1}{n} \cdot c$ auch noch kleiner als $\frac{\varepsilon}{2}$ bekommen. Dazu müssen wir gegebenenfalls unsere Bedingung an das $n \in \NN$ verstärken, so dass
+				\begin{align*}
+					\frac{1}{n'} \cdot c  \leq  \frac{\varepsilon}{2} \Leftrightarrow  n'  \geq \frac{2c}{\varepsilon}\\
+				\end{align*}
+				Wir stellen also an $n \in \NN$ die Bedingung, dass es größer als $max \lbrace n', N \rbrace$ sein muss. Damit folgt
+				\begin{align*}
+					& \frac{1}{n} \left(\sum\limits_{k=1}^{N} |a_k - a|\right)  + \frac{\varepsilon}{2}\\
+					& \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+				\end{align*}
+				die Konvergenz. \hfill \square
+			\item
+				 
 \end{document}
