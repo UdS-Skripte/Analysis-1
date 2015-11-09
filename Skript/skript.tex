@@ -6,6 +6,7 @@
 \usepackage{enumerate}
 \usepackage{ngerman}
 \usepackage{fancyhdr}
+\usepackage{mathtools}
 
 \usepackage[hidelinks]{hyperref}
 
@@ -18,331 +19,615 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\CC}{\mathbb{C}}
-\newcommand{\lecturedate}[1]{\rfoot{Lecture on: #1}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\lecturedate}[1]{\pagebreak\rfoot{Lecture on: #1}}
 
 \begin{document}
 
-	\title{Analysis 1 Skript}
- 	\author{Dominic Zimmer}
- 	%\date{18. Mai 1999}
-  	\maketitle 
+    \title{Analysis 1 Skript}
+     \author{Dominic Zimmer}
+     %\date{18. Mai 1999}
+      \maketitle 
 
-	\tableofcontents
+    \tableofcontents
 
-	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+    %see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
 
-	\lecturedate{21.10.2015}
+    \lecturedate{21.10.2015}
 
-	\chapter{Beweisprinzipien}
+    \chapter{Beweisprinzipien}
 
-	\section{Logik}	
-	Die Aussagenlogik befasst sich mit \emph{Aussagen}, welche \emph{(w)ahr} oder \emph{(f)alsch} sein können. Aus den Operatoren 
-	\begin{itemize}
-		\item
-			Negation:
-			\begin{equation*}
-				\neg a =
-					\begin{cases}
-						w & \text{falls $a \equiv f$}.\\
-						f & \text{falls $a \equiv w$}.
-					\end{cases}
-			\end{equation*}
-		\item
-			Konjunktion:
-			\begin{equation*}
-				a \lor b =
-					\begin{cases}
-						w & \text{falls $a \equiv w$ oder $b \equiv w$ (oder beide)}.\\
-						f & \text{sonst}.
-					\end{cases}
-			\end{equation*}
-		\item
-			Disjunktion:
-			\begin{equation*}
-				a \land b =
-					\begin{cases}
-						w & \text{falls $a \equiv w$ und $b \equiv w$}.\\
-						f & \text{sonst}.
-					\end{cases}
-			\end{equation*}
-		\item
-			Implikation:
-			\begin{equation*}
-				a \rightarrow b =
-					\begin{cases}
-						f & \text{falls $a \equiv w$ und $b \equiv f$}.\\
-						w & \text{sonst}.
-					\end{cases}
-			\end{equation*}
-		\item
-			Äquivalenz:
-			\begin{equation*}
-				a \leftrightarrow b =
-					\begin{cases}
-						w & \text{falls $a \equiv b$}.\\
-						f & \text{sonst}.
-					\end{cases}
-			\end{equation*}
-	\end{itemize}
-	lassen sich aus bereits bestehenden aussagelogischen Ausdrücken Weitere bilden. Auch lassen sich einfach aus den Definitionen Gesetzmäßigkeiten ableiten.
+    \section{Logik}    
+    Die Aussagenlogik befasst sich mit \emph{Aussagen}, welche \emph{(w)ahr} oder \emph{(f)alsch} sein können. Aus den Operatoren 
+    \begin{itemize}
+        \item
+            Negation:
+            \begin{equation*}
+                \neg a =
+                    \begin{cases}
+                        w & \text{falls $a \equiv f$}.\\
+                        f & \text{falls $a \equiv w$}.
+                    \end{cases}
+            \end{equation*}
+        \item
+            Konjunktion:
+            \begin{equation*}
+                a \lor b =
+                    \begin{cases}
+                        w & \text{falls $a \equiv w$ oder $b \equiv w$ (oder beide)}.\\
+                        f & \text{sonst}.
+                    \end{cases}
+            \end{equation*}
+        \item
+            Disjunktion:
+            \begin{equation*}
+                a \land b =
+                    \begin{cases}
+                        w & \text{falls $a \equiv w$ und $b \equiv w$}.\\
+                        f & \text{sonst}.
+                    \end{cases}
+            \end{equation*}
+        \item
+            Implikation:
+            \begin{equation*}
+                a \rightarrow b =
+                    \begin{cases}
+                        f & \text{falls $a \equiv w$ und $b \equiv f$}.\\
+                        w & \text{sonst}.
+                    \end{cases}
+            \end{equation*}
+        \item
+            Äquivalenz:
+            \begin{equation*}
+                a \leftrightarrow b =
+                    \begin{cases}
+                        w & \text{falls $a \equiv b$}.\\
+                        f & \text{sonst}.
+                    \end{cases}
+            \end{equation*}
+    \end{itemize}
+    lassen sich aus bereits bestehenden aussagelogischen Ausdrücken Weitere bilden. Auch lassen sich einfach aus den Definitionen Gesetzmäßigkeiten ableiten.
 
-	\section{Axiome}
-	\emph{Axiome} sind grundliegende Aussagen, die nicht weiter zurückgeführt werden (können). Wir \emph{beweisen}, indem wir \emph{Aussagen} auf Axiome zurückführen.
+    \section{Axiome}
+    \emph{Axiome} sind grundliegende Aussagen, die nicht weiter zurückgeführt werden (können). Wir \emph{beweisen}, indem wir \emph{Aussagen} auf Axiome zurückführen.
 
-	\section{Direkter Beweis}
-	Ein \emph{Direkter Beweis} wird geführt, indem man eine Aussage $A$ annimmt und ausgehend von dieser eine weitere Aussage $B$ \emph{beweist}.
+    \section{Direkter Beweis}
+    Ein \emph{Direkter Beweis} wird geführt, indem man eine Aussage $A$ annimmt und ausgehend von dieser eine weitere Aussage $B$ \emph{beweist}.
 
-	\subsection{Beispiel}
-	Wir wollen zeigen, dass folgende Aussage korrekt ist:
-	\begin{center}
-		Das Quadrat einer geraden Zahl ist wiederum gerade.
-	\end{center}
-	\begin{proof}
-		Sei $a \in \NN$ eine gerade Zahl, welche sich also auch als $a = 2 \cdot k$ darstellen lässt. Betrachten wir nun das Quadrat von $a$, so gilt:
-		\begin{equation*}
-			a^2 = (2 \cdot k)^2 = 2^2 \cdot k^2 = 4 k^2 = 2 \cdot (2 k^2)
-		\end{equation*}
-		Somit hat also $a^2 = 2 \cdot (2 k^2)$ eine Zwei als Teiler und ist somit gerade.$\square$
-	\end{proof}
+    \subsection{Beispiel}
+    Wir wollen zeigen, dass folgende Aussage korrekt ist:
+    \begin{center}
+        Das Quadrat einer geraden Zahl ist wiederum gerade.
+    \end{center}
+    \begin{proof}
+        Sei $a \in \NN$ eine gerade Zahl, welche sich also auch als $a = 2 \cdot k$ darstellen lässt. Betrachten wir nun das Quadrat von $a$, so gilt:
+        \begin{equation*}
+            a^2 = (2 \cdot k)^2 = 2^2 \cdot k^2 = 4 k^2 = 2 \cdot (2 k^2)
+        \end{equation*}
+        Somit hat also $a^2 = 2 \cdot (2 k^2)$ eine Zwei als Teiler und ist somit gerade.$\square$
+    \end{proof}
 
-	\section{Kontraposition}
-	Statt die Implikation $A \rightarrow B$ zu beweisen, können wir auch $\neg B \rightarrow \neg A$ beweisen. Wir nehmen also an, dass das zu zeigende nicht gilt und folgern daraus, dass unsere Annahme nicht gilt.
+    \section{Kontraposition}
+    Statt die Implikation $A \rightarrow B$ zu beweisen, können wir auch $\neg B \rightarrow \neg A$ beweisen. Wir nehmen also an, dass das zu zeigende nicht gilt und folgern daraus, dass unsere Annahme nicht gilt.
 
-	\section{Widerspruch}
-	Wir können eine Aussage $A$ auch beweisen, indem wir $\neg A$ annehmen und daraus einen Widerspruch folgern.
+    \section{Widerspruch}
+    Wir können eine Aussage $A$ auch beweisen, indem wir $\neg A$ annehmen und daraus einen Widerspruch folgern.
 
-	\section{Induktion}
-	Das Prinzip der \emph{vollständigen Induktion} besagt: \\
-	Ist $A(n)$ eine Aussage mit $n \in \NN$, so können wir diese Gültigkeit dieser Aussage für alle $n > n_0$ zeigen, indem wir
-	\begin{itemize}
-		\item
-			Die Gültigkeit der Aussage $A(n_0)$ zeigen und
-		\item
-			Aus der Annahme, dass die Aussage $A(n)$ für ein festes $n \in \NN$ bereits gilt, darauf schließen, dass auch $A(n + 1)$ gilt.
-	\end{itemize}
+    \section{Induktion}
+    Das Prinzip der \emph{vollständigen Induktion} besagt: \\
+    Ist $A(n)$ eine Aussage mit $n \in \NN$, so können wir diese Gültigkeit dieser Aussage für alle $n > n_0$ zeigen, indem wir
+    \begin{itemize}
+        \item
+            Die Gültigkeit der Aussage $A(n_0)$ zeigen und
+        \item
+            Aus der Annahme, dass die Aussage $A(n)$ für ein festes $n \in \NN$ bereits gilt, darauf schließen, dass auch $A(n + 1)$ gilt.
+    \end{itemize}
 
-	\section{Summennotation}
-	Seien $a_i$ ($i \in \NN$) eine Familie von Zahlen. Wir führen folgende Kurzschreibweise ein:
-	\begin{equation*}
-		\sum\limits_{k=m}^n a_i = a_m + \dots + a_n
-	\end{equation*}
+    \section{Summennotation}
+    Seien $a_i$ ($i \in \NN$) eine Familie von Zahlen. Wir führen folgende Kurzschreibweise ein:
+    \begin{equation*}
+        \sum\limits_{k=m}^n a_i = a_m + \dots + a_n
+    \end{equation*}
 
-	\section{Gaußformel}
-	Für alle $n \in \NN$ gilt: 
-	\begin{equation*}
-			\sum\limits_{k=1}^n k = \frac{n \cdot (n + 1)}{2}
-	\end{equation*}
-	\begin{proof}
-		Der Beweis erfolg einfach durch Induktion oder alternativ durch geschicktes, zweifaches Summieren obiger Summe.  
-	\end{proof}
+    \section{Gaußformel}
+    Für alle $n \in \NN$ gilt: 
+    \begin{equation*}
+            \sum\limits_{k=1}^n k = \frac{n \cdot (n + 1)}{2}
+    \end{equation*}
+    \begin{proof}
+        Der Beweis erfolg einfach durch Induktion oder alternativ durch geschicktes, zweifaches Summieren obiger Summe.  
+    \end{proof}
 
-	\section{Fakultät}
-		\subsection{Notation}
-		Wir definieren
-		\begin{equation*}
-			n ! = 1 \cdot 2 \cdot 3 \cdot \dots \cdot n = \prod\limits_{k=1}^n k 
-		\end{equation*}
-		als die \emph{Fakultät} von $n \in \NN$.
-		\subsection{Binomailkoeffizient}
-		Wir verwenden die Fakultät zur Definition des \emph{Binomialkoeffizientens}, den wir als \emph{n über k} oder \emph{k aus n} lesen:
-		\begin{equation*} 
-			\binom{n}{k} = \frac{n!}{k! \cdot (n-k)!}
-		\end{equation*}
+    \section{Fakultät}
+        \subsection{Notation}
+        Wir definieren
+        \begin{equation*}
+            n ! = 1 \cdot 2 \cdot 3 \cdot \dots \cdot n = \prod\limits_{k=1}^n k 
+        \end{equation*}
+        als die \emph{Fakultät} von $n \in \NN$.
+        \subsection{Binomailkoeffizient}
+        Wir verwenden die Fakultät zur Definition des \emph{Binomialkoeffizientens}, den wir als \emph{n über k} oder \emph{k aus n} lesen:
+        \begin{equation*} 
+            \binom{n}{k} = \frac{n!}{k! \cdot (n-k)!}
+        \end{equation*}
 
-	\section{Lemma: Binomialkoeffizient}
-	Für alle $1 \leq k \leq n$ gilt:
-	\begin{equation*}
-		\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
-	\end{equation*}
-	\begin{proof}
-		Nachrechnen. Eine Intuition für die Korrektheit erhält man leicht durch das \emph{Pascal'sche Dreieck}.
-	\end{proof}
+    \section{Lemma: Binomialkoeffizient}
+    Für alle $1 \leq k \leq n$ gilt:
+    \begin{equation*}
+        \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+    \end{equation*}
+    \begin{proof}
+        Nachrechnen. Eine Intuition für die Korrektheit erhält man leicht durch das \emph{Pascal'sche Dreieck}.
+    \end{proof}
 
-	\section{Binomischer Lehrsatz}
-	Für alle $x, y \in \RR$ und $n \in \NN$ gilt:
-	\begin{equation*}
-		(a+b)^n = \sum\limits_{k=0}^n \binom{n}{k} a^k \cdot b^{n-k}
-	\end{equation*}
-	\begin{proof}
-		Der Beweis erfolgt leicht durch Induktion über n.
-	\end{proof}
+    \section{Binomischer Lehrsatz}
+    Für alle $x, y \in \RR$ und $n \in \NN$ gilt:
+    \begin{equation*}
+        (a+b)^n = \sum\limits_{k=0}^n \binom{n}{k} a^k \cdot b^{n-k}
+    \end{equation*}
+    \begin{proof}
+        Der Beweis erfolgt leicht durch Induktion über n.
+    \end{proof}
 
-	\lecturedate{26.10.2015}
+    \lecturedate{26.10.2015}
 
-	\chapter{Mengen}
+    \chapter{Mengen}
 
-	\section{Mengen nach Cantor}
-	Cantos naive Mengendefinition besagte:\\
-	Eine \emph{Menge} ist eine Zusammenfassung wohlbestimmter und wohlunterscheidbarer Objekte unserer Anschauung oder unseres Denkens zu einem Ganzen.\\ \\
-	Diese \emph{naive} Definition birgt einige Widersprüche; zum Beispiel erlaubt sie die Menge aller Mengen.	
+    \section{Mengen nach Cantor}
+    Cantos naive Mengendefinition besagte:\\
+    Eine \emph{Menge} ist eine Zusammenfassung wohlbestimmter und wohlunterscheidbarer Objekte unserer Anschauung oder unseres Denkens zu einem Ganzen.\\ \\
+    Diese \emph{naive} Definition birgt einige Widersprüche; zum Beispiel erlaubt sie die Menge aller Mengen.    
 
-	\subsection{Schreibweisen}
-	Wir benutzen folgende Schreibweisen im Umgang mit Mengen:
-	\begin{itemize}
-		\item
-			$M = \lbrace x_1, x_2, \dots , x_n\rbrace$: Die Menge mit den Elementen $x_1, x_2, \dots, x_n$ und \emph{Kardinalität} $\# M = |M| = n$
-		\item
-			$x \in M$ : $x$ ist Element der Menge $M$
-		\item
-			$N \subset M$: $N$ ist eine \emph{Teilmenge} der Menge $M$
-	\end{itemize}
+    \subsection{Schreibweisen}
+    Wir benutzen folgende Schreibweisen im Umgang mit Mengen:
+    \begin{itemize}
+        \item
+            $M = \lbrace x_1, x_2, \dots , x_n\rbrace$: Die Menge mit den Elementen $x_1, x_2, \dots, x_n$ und \emph{Kardinalität} $\# M = |M| = n$
+        \item
+            $x \in M$ : $x$ ist Element der Menge $M$
+        \item
+            $N \subset M$: $N$ ist eine \emph{Teilmenge} der Menge $M$
+    \end{itemize}
 
-	\section{Mengenoperatoren}
-	Außerdem definieren wir für Zwei Mengen $M$ und $N$
-	\begin{enumerate}[i)]
-		\item
-			die Vereinigung von $M$ und $N$:\\
-			\[
-				M \cup N = \lbrace x \mid x \in M \lor x \in N \rbrace
-			\]
-		\item
-			den Schnitt von $M$ und $N$.
-			\[
-				M \cap N = \lbrace x \mid x \in M \land x \in N \rbrace
-			\]
-		\item
-			das Komplement von $M$ in $N$.
-			\[
-				M \setminus N = \lbrace x \mid x \in M \land x \notin N \rbrace
-			\]
-	\end{enumerate}
+    \section{Mengenoperatoren}
+    Außerdem definieren wir für Zwei Mengen $M$ und $N$
+    \begin{enumerate}[i)]
+        \item
+            die Vereinigung von $M$ und $N$:\\
+            \[
+                M \cup N = \lbrace x \mid x \in M \lor x \in N \rbrace
+            \]
+        \item
+            den Schnitt von $M$ und $N$.
+            \[
+                M \cap N = \lbrace x \mid x \in M \land x \in N \rbrace
+            \]
+        \item
+            das Komplement von $M$ in $N$.
+            \[
+                M \setminus N = \lbrace x \mid x \in M \land x \notin N \rbrace
+            \]
+    \end{enumerate}
 
-	\section{Wichtige Mengen}
-		Einige wichtige Mengen sind:
-		\begin{itemize}
-			\item
-				$\emptyset = \lbrace \rbrace$, die \emph{Leere Menge}, welche keine Elemente hat.
-			\item
-				$\NN = \lbrace 1, 2, 3, \dots \rbrace$, die \emph{Natürlichen Zahlen}
-			\item
-				$\ZZ = \lbrace 0, 1, -1, 2, -2, \dots \rbrace$, die \emph{Ganzen Zahlen}
-			\item
-				$\QQ = \lbrace \frac{p}{q} \mid p,q \in \ZZ, q \neq 0\rbrace$, die \emph{Rationalen Zahlen}
-			\item
-				$\RR$, die Menge der \emph{Reellen Zahlen}
-			\item
-				$\CC = \lbrace (a, b \cdot i) \mid a, b \in \RR \rbrace$
- 		\end{itemize}
+    \section{Wichtige Mengen}
+        Einige wichtige Mengen sind:
+        \begin{itemize}
+            \item
+                $\emptyset = \lbrace \rbrace$, die \emph{Leere Menge}, welche keine Elemente hat.
+            \item
+                $\NN = \lbrace 1, 2, 3, \dots \rbrace$, die \emph{Natürlichen Zahlen}
+            \item
+                $\ZZ = \lbrace 0, 1, -1, 2, -2, \dots \rbrace$, die \emph{Ganzen Zahlen}
+            \item
+                $\QQ = \lbrace \frac{p}{q} \mid p,q \in \ZZ, q \neq 0\rbrace$, die \emph{Rationalen Zahlen}
+            \item
+                $\RR$, die Menge der \emph{Reellen Zahlen}
+            \item
+                $\CC = \lbrace (a, b \cdot i) \mid a, b \in \RR \rbrace$
+         \end{itemize}
 
-	\section{Quantoren}
-	\emph{Quantoren} sind Kurzschreibweisen für in der Mathematik häufig benutzte Flosskeln. $\exists$ nennt man \emph{Existensquantor} und $\forall$ \emph Allquantor. Sei nun $X$ eine Menge und $P(x)$ eine Aussage über $x$.
-	\begin{itemize}
-		\item
-			$\forall x \in X : P(x)$ für \glqq Für alle $x \in X$ gilt die Aussage $P(x)$.\grqq
-		\item
-			$\exists x \in X : P(x)$ für \glqq Es gibt (zumindest) ein $x \in X$ für welches die Aussage $P(x)$ gilt.\grqq
-	\end{itemize}
+    \section{Quantoren}
+    \emph{Quantoren} sind Kurzschreibweisen für in der Mathematik häufig benutzte Flosskeln. $\exists$ nennt man \emph{Existensquantor} und $\forall$ \emph Allquantor. Sei nun $X$ eine Menge und $P(x)$ eine Aussage über $x$.
+    \begin{itemize}
+        \item
+            $\forall x \in X : P(x)$ für \glqq Für alle $x \in X$ gilt die Aussage $P(x)$.\grqq
+        \item
+            $\exists x \in X : P(x)$ für \glqq Es gibt (zumindest) ein $x \in X$ für welches die Aussage $P(x)$ gilt.\grqq
+    \end{itemize}
 
-	\section{Verneinung von Quantoren}
-	Ausdrücke, welche Quantoren enthalten, werden Verneint, indem man den jeweiligen Existens- oder Allquantor mit dem Anderen ersetzt, und den Ausdruck dahinter verneint. Zum Beispiel:
-	\begin{align*}
- 		& \neg \forall x \in X: \exists y \in Y : P (x,y)\\
-		=& \exists x \in X: \neg \exists y \in Y : P(x,y)\\
-		=& \exists x \in X: \forall y \in Y: \neg P(x,y)
-	\end{align*}
+    \section{Verneinung von Quantoren}
+    Ausdrücke, welche Quantoren enthalten, werden Verneint, indem man den jeweiligen Existens- oder Allquantor mit dem Anderen ersetzt, und den Ausdruck dahinter verneint. Zum Beispiel:
+    \begin{align*}
+         & \neg \forall x \in X: \exists y \in Y : P (x,y)\\
+        =& \exists x \in X: \neg \exists y \in Y : P(x,y)\\
+        =& \exists x \in X: \forall y \in Y: \neg P(x,y)
+    \end{align*}
 
-	\section{Vereinigung und Schnitt}
-	Sei $I \subseteq \NN$ eine Indexmenge und $M_i$ eine Familie von Mengen. Wir notieren
-	\begin{itemize}
-		\item
-			$\bigcup\limits_{i \in I} M_i = M_{i_1} \cup M_{i_2} \cup \dots = \lbrace x \mid \exists i \in I: x \in M_i\rbrace$
-		\item
-			$\bigcap\limits_{i \in I} M_i = M_{i_1} \cap M_{i_2} \cap \dots = \lbrace x \mid \forall i \in I: x \in M_i\rbrace$
-	\end{itemize}
+    \section{Vereinigung und Schnitt}
+    Sei $I \subseteq \NN$ eine Indexmenge und $M_i$ eine Familie von Mengen. Wir notieren
+    \begin{itemize}
+        \item
+            $\bigcup\limits_{i \in I} M_i = M_{i_1} \cup M_{i_2} \cup \dots = \lbrace x \mid \exists i \in I: x \in M_i\rbrace$
+        \item
+            $\bigcap\limits_{i \in I} M_i = M_{i_1} \cap M_{i_2} \cap \dots = \lbrace x \mid \forall i \in I: x \in M_i\rbrace$
+    \end{itemize}
 
-	\section{De Morgan}
-	Sei $M_i$ eine Familie von Mengen, so ist
-	\begin{itemize}
-		\item
-			 $\overline{\bigcup\limits_{i \in I} M_i} = \bigcap\limits_{i \in I} \overline{M_i} $
-		\item
-			 $\overline{\bigcap\limits_{i \in I} M_i} = \bigcup\limits_{i \in I} \overline{M_i} $
-	\end{itemize}
+    \section{De Morgan}
+    Sei $M_i$ eine Familie von Mengen, so ist
+    \begin{itemize}
+        \item
+             $\overline{\bigcup\limits_{i \in I} M_i} = \bigcap\limits_{i \in I} \overline{M_i} $
+        \item
+             $\overline{\bigcap\limits_{i \in I} M_i} = \bigcup\limits_{i \in I} \overline{M_i} $
+    \end{itemize}
 
-	\section{Abbildungen}
-	\subsection{Definition}
-	 	Seien $X$ und $Y$ Mengen. Wir definieren eine \emph{Abbildung} oder auch \emph{Funktion}
-	 	\begin{equation*}
-	 		f: x \longrightarrow Y
-	 	\end{equation*}
-	 	als eine Vorschrift, die jedem $x \in X$ genau ein $y \in Y$ zurodnet. Wir nennen dabei $X$ den \emph{Definitionsbereich} und $Y$ den \emph{Wertebereich}.
-	 	\subsection{Eigenschaften}
-	 	Wir nennen eine Abbildung $f: X \longrightarrow Y$
-	 	\begin{itemize}
-	 		\item
-	 			\emph{injektiv}, wenn $\forall x_1, x_2 \in X: f(x_1) = f(x_2) \rightarrow x_1 = x_2$
-	 		\item
-	 			\emph{surjektiv}, wenn $\forall y \in Y : \exists x \in X: f(x) = y$
-	 		\item
-	 			\emph{bijektiv}, wenn f injektiv und surjektiv ist.
-		\end{itemize}
+    \section{Abbildungen}
+    \subsection{Definition}
+         Seien $X$ und $Y$ Mengen. Wir definieren eine \emph{Abbildung} oder auch \emph{Funktion}
+         \begin{equation*}
+             f: x \longrightarrow Y
+         \end{equation*}
+         als eine Vorschrift, die jedem $x \in X$ genau ein $y \in Y$ zurodnet. Wir nennen dabei $X$ den \emph{Definitionsbereich} und $Y$ den \emph{Wertebereich}.
+         \subsection{Eigenschaften}
+         Wir nennen eine Abbildung $f: X \longrightarrow Y$
+         \begin{itemize}
+             \item
+                 \emph{injektiv}, wenn $\forall x_1, x_2 \in X: f(x_1) = f(x_2) \rightarrow x_1 = x_2$
+             \item
+                 \emph{surjektiv}, wenn $\forall y \in Y : \exists x \in X: f(x) = y$
+             \item
+                 \emph{bijektiv}, wenn f injektiv und surjektiv ist.
+        \end{itemize}
 
-	\lecturedate{28.10.2015}
+    \lecturedate{28.10.2015}
 
-	\section{Komposition}
-	Seien $f: x \longrightarrow Y$ und $g: Y \longrightarrow Z$ Abbildungen. Wir definieren die \emph{Komposition} $g \circ f : X \longrightarrow Z$ definiert durch
-	\begin{equation*}
-		g \circ f := g(f(x)) \text{ für } x \in X.	
-	\end{equation*}
+    \section{Komposition}
+    Seien $f: x \longrightarrow Y$ und $g: Y \longrightarrow Z$ Abbildungen. Wir definieren die \emph{Komposition} $g \circ f : X \longrightarrow Z$ definiert durch
+    \begin{equation*}
+        g \circ f := g(f(x)) \text{ für } x \in X.    
+    \end{equation*}
 
-	\section{Identitätsabbildung}
-	Wir nennen $id_x : X \rightarrow X$ die \emph{Identitätsabbildung} auf $X$ mit
-	\begin{equation*}
-		id_X (x) = X, \forall x \in X
-	\end{equation*}
-	Sie fungier als das Neutrale Element der Komposition von Funktionen.
+    \section{Identitätsabbildung}
+    Wir nennen $id_x : X \rightarrow X$ die \emph{Identitätsabbildung} auf $X$ mit
+    \begin{equation*}
+        id_X (x) = X, \forall x \in X
+    \end{equation*}
+    Sie fungier als das Neutrale Element der Komposition von Funktionen.
 
-	\section{Umkehrabbildung}
-	Sei $f : X \rightarrow Y$ eine Bijketion. Wir definieren die \emph{Umkehrabbildung} $f^{-1}$ von $f$ durch
-	\begin{equation*}
-		f^{-1} : Y \longrightarrow X, f^{-1}(y) = x \text{ mit } f(x) = y 
-	\end{equation*} 
-	Woraus offensichtlich folgt, dass $f \circ f^{-1} = id_X$
+    \section{Umkehrabbildung}
+    Sei $f : X \rightarrow Y$ eine Bijketion. Wir definieren die \emph{Umkehrabbildung} $f^{-1}$ von $f$ durch
+    \begin{equation*}
+        f^{-1} : Y \longrightarrow X, f^{-1}(y) = x \text{ mit } f(x) = y 
+    \end{equation*} 
+    Woraus offensichtlich folgt, dass $f \circ f^{-1} = id_X$
 
-	\section{Kardinalitäten}
-		\subsection{Definition}
-		Zwei Mengen $N$ und $M$ sind \emph{gleichmächtig}, falls eine Bijektion $f: N \longrightarrow M$ existiert.
-		\subsection{Abzählbar}
-		Eine Menge $M$ heißt \emph{abzählbar}, falls sie entweder \emph{endlich} oder \emph{gleichmächtig wie $\NN$} ist.
-		\subsection{Überabzählbar}
-		Eine Menge $M$, die nicht abzählbar ist, nennen wir \emph{überabzählbar}.
+    \section{Kardinalitäten}
+        \subsection{Definition}
+        Zwei Mengen $N$ und $M$ sind \emph{gleichmächtig}, falls eine Bijektion $f: N \longrightarrow M$ existiert.
+        \subsection{Abzählbar}
+        Eine Menge $M$ heißt \emph{abzählbar}, falls sie entweder \emph{endlich} oder \emph{gleichmächtig wie $\NN$} ist.
+        \subsection{Überabzählbar}
+        Eine Menge $M$, die nicht abzählbar ist, nennen wir \emph{überabzählbar}.
 
-	\section{Kardinalität von $\RR$}
-	$\RR$ ist überabzählbar.
-	\begin{proof}
-		Offensichtlich genügt es zu zeigen, dass eine Teilmenge von $\RR$ überabzählbar ist, um zu zeigen, dass $\RR$ überabzählbar ist. Betrachten wir also das Intervall $[0,1]$. Wir wollen einen Widerspruchsbeweis führen. Nehmen wir also an, $\RR$ sei abzählbar. So könnten wir also alle Zahlen aus $\RR$ abzählen.\\
-		\begin{center}
-			\begin{tabular}{ll}
-				$1$ & $0.a_1 a_2 a_3 a_4 a_5 \dots$\\
-				$2$ & $0.b_1 b_2 b_3 b_4 b_5 \dots$\\
-				$3$ & $0.c_1 c_2 c_3 c_4 c_5 \dots$\\
-				$4$ & $0.d_1 d_2 d_3 d_4 d_5 \dots$\\
-				$\vdots$ & $\ddots$  
-			\end{tabular}
-		\end{center}
-		Konstruieren wir nun eine Zahl $z$, welche stehts in der $n-ten$ Nachkommastelle mit der $n-ten$ Zahl der Liste \emph{nicht} übereinstimmt. Also kann $z$ nicht die erste Zahl der Liste sein, da sie in der ersten Nachkommastelle nicht mit ihr übereinstimmt. Dies läuft darauf hinaus, dass $z$ mit jeder Zahl aus der Liste in der $n-ten$ Nachkommastelle \emph{nicht} übereinstimmt. Also ist $z$ nicht in der Liste. Somit ist $[0,1]$ nicht abzählbar und somit ist $\RR$ nicht abzählbar.
-	\end{proof}
-	
-	\chapter{Folgen}
-	\section{Folgen reeller Zahlen}
-		\subsection{Definition}
-		Eine Folge reeller Zahlen ist eine Abbildung $\NN \longrightarrow \RR , n \mapsto a_n $. Schreibweise: $ (a_n ) n \in \NN $ oder $ (a_1 , a_2 ,a_3 , \dots )$
-		Folgen müssen nicht mit dem Index 1 beginnen, auch Folgen der Form $(a_n ) n \geq n_0 $ sind unmöglich.
-		
-		\subsection{Beispiele von Folgen}
-		\begin{enumerate}[i)]
-			\item $a_n =2 ,\forall n \in \NN$ also $(2,2,2,\dots )$
-			\item $a_n = n ,\forall n \in \NN$ also $(1,2,3,\dots )$
-			\item $a_n = \frac{1}{n},\forall n \in \NN$ also $(\frac{1}{1},\frac{1}{2},\frac{1}{3}, \dots )$
-			\item $a_n =(-1)^n , \forall n \in \NN$ also $(-1,1,-1,1, \dots )$
-		\end{enumerate}
-	\section{Konvergenz}
-		\subsection{Definition}
-		Eine Folge$(a_n ) n \in \NN$ reeller Zahlen heißt konvergent mit Grenzwert $a \in \RR$(oder \glqq konvergent gegen $a$ \grqq ), falls $\forall \varepsilon > 0 :\exists N \in \NN :\forall n \geq N:|a-a_n | < \varepsilon$. Schreibweise: $\lim\limits_{n \rightarrow \infty}{a_n}$ \\
-		$a_n \longrightarrow a, \lim n \longrightarrow \infty$
-		\subsection{Bemerkung}
-		Für $x,y \in \RR$ gilt die inverse Dreiecksgleichung
-		\begin{equation*}
-			||x|-|y|| \leq |x-y|
-		\end{equation*}
+    \section{Kardinalität von $\RR$}
+    $\RR$ ist überabzählbar.
+    \begin{proof}
+        Offensichtlich genügt es zu zeigen, dass eine Teilmenge von $\RR$ überabzählbar ist, um zu zeigen, dass $\RR$ überabzählbar ist. Betrachten wir also das Intervall $[0,1]$. Wir wollen einen Widerspruchsbeweis führen. Nehmen wir also an, $\RR$ sei abzählbar. So könnten wir also alle Zahlen aus $\RR$ abzählen.\\
+        \begin{center}
+            \begin{tabular}{ll}
+                $1$ & $0.a_1 a_2 a_3 a_4 a_5 \dots$\\
+                $2$ & $0.b_1 b_2 b_3 b_4 b_5 \dots$\\
+                $3$ & $0.c_1 c_2 c_3 c_4 c_5 \dots$\\
+                $4$ & $0.d_1 d_2 d_3 d_4 d_5 \dots$\\
+                $\vdots$ & $\ddots$  
+            \end{tabular}
+        \end{center}
+        Konstruieren wir nun eine Zahl $z$, welche stehts in der $n-ten$ Nachkommastelle mit der $n-ten$ Zahl der Liste \emph{nicht} übereinstimmt. Also kann $z$ nicht die erste Zahl der Liste sein, da sie in der ersten Nachkommastelle nicht mit ihr übereinstimmt. Dies läuft darauf hinaus, dass $z$ mit jeder Zahl aus der Liste in der $n-ten$ Nachkommastelle \emph{nicht} übereinstimmt. Also ist $z$ nicht in der Liste. Somit ist $[0,1]$ nicht abzählbar und somit ist $\RR$ nicht abzählbar.
+    \end{proof}
+    
+    \chapter{Folgen}
+    \section{Folgen reeller Zahlen}
+        \subsection{Definition}
+        Eine Folge reeller Zahlen ist eine Abbildung $\NN \longrightarrow \RR , n \mapsto a_n $. Schreibweise: $ (a_n ) n \in \NN $ oder $ (a_1 , a_2 ,a_3 , \dots )$
+        Folgen müssen nicht mit dem Index 1 beginnen, auch Folgen der Form $(a_n ) n \geq n_0 $ sind unmöglich.
+        
+        \subsection{Beispiele von Folgen}
+        \begin{enumerate}[i)]
+            \item $a_n =2 ,\forall n \in \NN$ also $(2,2,2,\dots )$
+            \item $a_n = n ,\forall n \in \NN$ also $(1,2,3,\dots )$
+            \item $a_n = \frac{1}{n},\forall n \in \NN$ also $(\frac{1}{1},\frac{1}{2},\frac{1}{3}, \dots )$
+            \item $a_n =(-1)^n , \forall n \in \NN$ also $(-1,1,-1,1, \dots )$
+        \end{enumerate}
+    \section{Konvergenz}
+        \subsection{Definition}
+        Eine Folge$(a_n ) n \in \NN$ reeller Zahlen heißt konvergent mit Grenzwert $a \in \RR$(oder \glqq konvergent gegen $a$ \grqq ), falls $\forall \varepsilon > 0 :\exists N \in \NN :\forall n \geq N:|a-a_n | < \varepsilon$. Schreibweise: $\lim\limits_{n \rightarrow \infty}{a_n}$ \\
+        $a_n \longrightarrow a, \lim n \longrightarrow \infty$
+        \subsection{Bemerkung}
+        Für $x,y \in \RR$ gilt die inverse Dreiecksgleichung
+        \begin{equation*}
+            ||x|-|y|| \leq |x-y|
+        \end{equation*}
+
+    \section{TODO: FEHLT!!}
+
+    \lecturedate{02.11.2015}
+
+    \section{Anordnung}
+    Ein Körper $(K, +, \cdot)$ heißt \emph{angeordnet}, falls wir gewisse Elemente aus $K$ als \emph{positiv} auszeichen können. Schreibe $a \in K, a > 0$, falls gilt:
+    \begin{enumerate}[i)]
+        \item
+            Es gilt für $a$ genau eine der drei Beziehungen:
+            \begin{itemize}
+                \item
+                    $a > 0$
+                \item
+                    $a = 0$
+                \item
+                    $-a >0$
+            \end{itemize}
+        \item
+            Für $a,b \in K, a > 0, b >0$ gilt: $a + b > 0$ und $a \cdot b > 0 $
+    \end{enumerate}
+
+    \section{Notation}
+    Wir benutzen folgende Notation:
+    \begin{itemize}
+        \item
+            $a > b :\Leftrightarrow a-b > 0$
+        \item
+            $a < b :\Leftrightarrow b > a$
+        \item
+            $a \geq b:\Leftrightarrow a > b \lor a = b$
+        \item
+            $a \leq b:\Leftrightarrow b \geq a$
+        \item
+            $max(a,b) :=
+            \begin{cases}
+                a \text{ falls } a > b \\
+                b \text{ sonst }\\
+            \end{cases}
+            $
+        \item
+            $min(a,b) := 
+            \begin{cases}
+                a \text{ falls } a < b \\
+                b \text{ sonst }\\
+            \end{cases}
+            $
+    \end{itemize}
+
+    \section{Beispiele}
+    \begin{itemize}
+        \item
+            $\QQ$ und $\RR$ sind angeordnete Körper.
+        \item
+            $\CC$ ist kein angeordneter Körper.
+        \item
+            $\FF_p$ (zur Primzahl $p$) ist kein angeordneter Körper.
+    \end{itemize}
+    Insbesondere lassen sich $\CC$ und $\FF_p$ \emph{nicht} (durch besondere Tricks) anordnen!
+
+    \section{Anordnungsgesetze}
+    Sei $(K, +, \cdot)$ ein angeordneter Körper und $a,b,c \in K$, so gilt:
+    \begin{enumerate}[i)]
+        \item
+            $a<b$, $b<c \Rightarrow a<c$
+        \item
+            $a<b \Rightarrow a+c < b+c$
+        \item
+            $a < b \land c > 0 \Rightarrow a \cdot c < b \cdot c$
+        \item
+            $a<b \Leftrightarrow -a > -b$
+        \item
+            $0 \leq a < b$ und $0 \leq c < d$\\
+            $\Rightarrow a c < b d$
+    \end{enumerate}
+
+    \section{Einbettung}
+    Sei $K$ ein angeordneter Körper. Dann können wir $\NN$ in $K$ einbetten.
+    \begin{align*}
+        n_k := \underbrace{1_K + \dots + 1_K}_{n-mal} \in K
+    \end{align*}
+    Für $n \in \NN$.
+
+    \subsection{Notation}
+    Wir werden im Folgenden intuitiv $n$ mit $n_k$ identifizieren.
+
+    \section{Bernoulli'sche Ungleichung}
+    Sei $n \in \NN$ und $-1 < x \in K$, so gilt:
+    \begin{align*}
+        1+ nx \leq (1 + x)^n
+    \end{align*}
+
+    \section{Betrag}
+    Sei $K$ ein angeordneter Körper. Für $a \in K$ definieren wir:
+    \begin{align*}
+        |a| :=
+        \begin{cases}
+            a &\text{ falls } a \geq 0\\
+            -a &\text{ sonst }
+        \end{cases}
+    \end{align*}
+    Und nennen $|a|$ den (Absolut-)Betrag von $a$.
+
+    \section{Eigenschaften Betrag}
+    Es gilt für $a, b \in K$:
+    \begin{enumerate}[i)]
+        \item
+            $|-a| = |a|$
+        \item
+            $|ab| = |a| |b|$
+        \item\label{DU}
+            $|a  + b| \leq |a| + |b|$ 
+    \end{enumerate}
+    Und nennen \ref{DU}) die \emph{Dreiecksunleichung}.
+
+    \section{Archimedisch}
+    Wir nennen einen angeordneten Körper \emph{archimedisch}, falls für alle $x \in K$ ein $n \in \NN$ existiert, so dass $n > x$ ist.
+
+    \section{Folgerungen Archimedes}
+    Ist $K$ ein archimedischer Körper, so folgt:
+    \begin{enumerate}[i)]
+        \item
+            Zu jedem $\varepsilon > 0$ existiert ein $N \in \NN$, so dass $\frac{1}{n} < \varepsilon$ für alle $n \geq N$ gilt.
+        \item
+            Ist $b = 1 + \varepsilon$ mit $\varepsilon > 0$, so existiert für alle $ R \in K$ ein $N \in \NN$, so dass $b^n > R$ für alle $n \geq N$.
+        \item
+            Ist $0 < q < 1$, so gibt es ein $\varepsilon > 0$ und $n \in \NN$, so dass $q^n < \varepsilon$ für alle $n \geq N$.
+    \end{enumerate}
+
+    \section{Behauptung}
+    $\RR$ ist ein angeordneter Körper
+
+    \section{Weiterführung}
+    Momentan gilt noch $\RR = \QQ$. Bald werden wir untersuchen, worin sich diese beiden Mengen unterscheiden, sprich $\RR \setminus \QQ$ betrachten.
+
+    \lecturedate{04.11.2015}
+
+    \chapter{Folgen in $\RR$}
+
+    \section{Definition}
+    Eine \emph{Folge} reeller Zahlen heißt ist eine Abbildung $\NN \to \RR$ mit $n \mapsto a_n$
+    Wir schreiben die Folge als $(a_n)_{n \in \NN}$ oder $(a_1, a_2, a_3, \dots )$.
+
+    \section{Beispiele}
+    \begin{enumerate}[i)]
+        \item
+            $a_n = 2$ ist die Folge $(2, 2, 2, 2, \dots )$
+        \item
+            $a_n = n $ ist die Folge $(1, 2, 3, 4, 5, \dots)$
+        \item
+            $a_n = \frac{1}{n}$ ist die Folge $(\frac{1}{1},\frac{1}{2},\frac{1}{3}, \frac{1}{4}, \frac{1}{6}, \frac{1}{7}, \dots)$
+    \end{enumerate}
+
+    \section{Konvergenz}
+    Eine Folge $(a_n)_{n \in \NN}$ heißt \emph{konvergent} mit Grenzwert $a \in \RR$, falls
+    \begin{align*}
+        \forall \varepsilon > 0 :\exists N \in \NN :\forall n \geq N: |a - a_n| < \varepsilon
+    \end{align*}
+    und schreiben $\lim\limits_{n \to \infty} a_n = a$.
+
+    \section{Inverse Ungleichung}
+    Für $x,y \in \RR$ gilt die \emph{inverse Dreiecksungleichung}:
+    \begin{align*}
+        ||x| - |y| | \leq |x - y|
+    \end{align*}
+
+    \section{Beispiele}
+    \begin{enumerate}[i)]
+        \item
+            $a_n = 2$ ist eine konvergente Folge mit Grenzwert 2. 
+        \item
+            $a_n = n$ konvergiert nicht.
+        \item
+            $a_n = \frac{1}{n}$ konvergiert gegen 0. 
+    \end{enumerate}
+
+    \section{Eindeutigkeit}
+    Der Grenzwert einer konvergenten Folge ist eindeutig bestimmt.
+
+    \section{Sprechweise}
+    Eine Folge die nicht konvergiert heißt \emph{divergent}.
+
+    \section{Bemerkung}
+    Eine konvergente Folge $(a_n)_{n \in \NN}$ konvergiert auch, wenn man endlich viele Folgenglieder weglässt. Insbesondere konvergiert $(a_n)_{n \geq n_0}$ mit $n_0 \in \NN$ gegen den selben Grenzwert.
+
+    \section{Formel}
+    Sei $x \in \RR$ mit $|x| < 1$ und $(s_n) = 1 + x + x^2 + \dots + x^n$. Dann konveriert $(s_n)$ mit
+    \begin{align*}
+        \lim\limits_{n \to \infty} (s_n) = \frac{1}{1-n}
+    \end{align*}
+
+    \section{Beispiele}
+    Ausgelassen, da triviale Anwendungen obiger Formel.
+
+    \section{Beschränktheit}
+    Eine Folge $(a_n)_{n \in \NN}$ heißt \emph{nach oben (nach unten) beschränkt}, falls ein $k \in \RR$ existiert, so dass $a_n \leq k (a_n \geq k)$ für alle $n \in \NN$ ist. Eine Folge heißt beschränkt, wenn sie nach oben oder nach unten beschränkt ist.
+
+    \section{Satz}
+    Jede konvergente Folge ist beschränkt.
+
+    \section{Einschachtelung}
+    Für alle $a, \varepsilon \in \RR$ mit $\varepsilon > 0$ gilt:
+    \begin{align*}
+        a-\varepsilon < a < a + \varepsilon
+    \end{align*}
+
+    \section{Rechenregeln für Grenzwerte}\label{414}
+    Seien $(a_n)$ und $(b_n)$ konvergente Folgen in $\RR$. Dann gilt:
+    \begin{align*}
+        \lim\limits_{n \to \infty} a_n \cdot \lim\limits_{n \to \infty} b_n &= \lim\limits_{n \to \infty} a_n \cdot b_n\\
+        \lim\limits_{n \to \infty} a_n + \lim\limits_{n \to \infty} b_n &= \lim\limits_{n \to \infty} a_n + b_n\\
+    \end{align*}
+
+    \section{Lineartität}
+    Das Bilden der Grenzwerte konvergenter Folgen ist linear, also ergänzend zu \ref{414} gilt:
+    \begin{align*}
+        \lim\limits_{n \to \infty} \lambda a_n = \lambda \lim\limits_{n \to \infty} a_n
+    \end{align*}
+
+    \lecturedate{09.11.2015}
+
+    \section{Beispiel}
+    Sei $a_n = \frac{n+1}{n} = \frac{n}{n} + \frac{1}{n} = 1 + \frac{1}{n}$. Dann gilt:
+    \begin{align*}
+        \lim\limits_{n \to \infty} a_n = 1 + 0 = 1
+    \end{align*}
+
+    \section{Quotienten von Folgen}
+    Seien $(a_n)$ und $(b_n)$ konvergente Folgen mit $\lim\limits_{n \to \infty} b_n \neq 0$, dann gibt es ein $n_0 \in \NN$, für alle $n \in \NN_{\geq n_0}$ gilt:
+    \begin{align*}
+        \lim\limits_{n \to \infty} \frac{a_n}{b_n} = \frac{\lim\limits_{n \to \infty} a_n}{\lim\limits_{n \to \infty} b_n}
+    \end{align*}
+
+    \section{Rechenbeispiel}
+    \begin{align*}
+        a_n &= \frac{5n^2 + 2n + 1}{3n^2 + 10n}\\
+        &= \frac{5 + \frac{2}{n} + \frac{1}{n^2}}{3 + \frac{10}{n}} \xrightarrow{n \to \infty} \frac{5}{3}
+    \end{align*}
+
+    \section{Ordnung von Grenzwerten}
+    Seien $(a_n)$, $(b_n)$ und $(c_n)$ konvergente Folgen in $\RR$.
+    \begin{enumerate}[i)]
+        \item
+            Ist $a_n \leq b_n$ $\forall n \in \NN$, so ist $\lim\limits_{n \to \infty} a_n \leq \lim\limits_{n \to \infty} b_n$
+        \item\label{Sandwichlemma}
+            Ist $\lim\limits_{n \to \infty} b_n = b = \lim\limits_{n \to \infty}$ und $b_n < a_n < c_n$, so konvergiert $(a_n)$ ebenfalls gegen $b$.
+    \end{enumerate}
+    \ref{Sandwichlemma} wird häufig auch als Sandwichlemma bezeichnet, da anschaulich $a_n$ von $b_n$ und $c_n$ eingeengt - \glqq gesandwicht\grqq\ - wird.
+
+    \section{Ordnung im Grenzübergang}
+    Sind $a_n < b_n$ konvergente Folgen in $\RR$ mit gleichem Grenzwert, so gilt für deren Grenzwerte im Allgemeinen nur
+    \begin{align*}
+        \lim\limits_{n \to \infty} a_n \leq \lim\limits_{n \to \infty} b_n
+    \end{align*}
+
+    \section{Beispiel}
+    Der Grenzwert von $(\frac{n}{2^n})_{n \in \NN}$ ist 0.
+    \begin{proof} Der Beweis erfolgt durch Anwendung des Sandwichlemmas auf die Nullfolge und $(q^n \cdot \lambda )$ \end{proof}
+
+    \section{Bestimmte Divergenz}
+    Eine divergente Folge $(a_n)_{n \in \NN}$ nennen wir \emph{bestimmt divergent} (oder \emph{uneigentlich konvergent}) gegen $\pm \infty$, wenn gilt:
+    \begin{align*}
+        \forall K \in \RR: \exists N \in \NN: \forall n \geq N: a_n > K \text{ (bzw $a_n < K$)}
+    \end{align*}
+    Wir notieren den Grenzwert als $\lim\limits_{n \to \infty} a_n = \pm \infty$.
+
+    \section{Beispiele}
+    \begin{enumerate}[i)]
+        \item
+            $a_n = n$ konvergiert uneigentlich gegen $\infty$.
+        \item
+            $a_n = -n^2$ konvergiert uneigentlich gegen $- \infty$.
+        \item
+            $a_n = (-1)^n$ divergiert.
+    \end{enumerate}
+
+    \section{Kehrwert von Grenzwerten}
+    Sei $(a_n)$ eine relle Folge mit $a_n > 0$. Dann gilt:
+    \begin{align*}
+        \lim\limits_{n \to \infty} a_n = \infty \Leftrightarrow \lim\limits_{n \to \infty} \frac{1}{a_n} = 0
+    \end{align*}
+
+
 \end{document}
