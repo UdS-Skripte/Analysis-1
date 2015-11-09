@@ -8,4 +8,5 @@
 *.out
 
 # I can compile on my own
-*.pdf
+#*.pdf for public viewing
+/blaetter/*/*.pdf
