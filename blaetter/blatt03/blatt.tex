@@ -50,17 +50,17 @@
 			Zu zeigen: Sind $M_1, \dots, M_l$ abzählbare Mengen, so ist auch $M_1 \times \dots \times M_l$ abzählbar.
 			\begin{proof}
 				Beweis durch Induktion über die Mengen $M_i$ mit $i \in \lbrace 1, \dots, l\rbrace$.\\
-				Induktionsanfang:\\
+				\textbf{Induktionsanfang}:\\
 				$ i = 1$:
 				$M_1$ ist bereits abzählbar.\\
 				$i = 2$ (eigentlich nicht notwendig): $M_1 \times M_2$ ist nach \emph{Cantors erstem Diagonalargument} abzählbar, da $M_1$ und $M_2$ abzählbare Mengen sind.\\
-				Induktionsvorraussetzung: Sei $M_1 \times M_2 \times \dots \times M_n$ abzählbar für ein festes $n \in \NN$. (Da $l$ fest, sei $n < l$, aber das ist vernachlässigbar.)\\
-				Induktionsschritt: $n \leadsto n+1$\\
+				\textbf{Induktionsvorraussetzung}: Sei $M_1 \times M_2 \times \dots \times M_n$ abzählbar für ein festes $n \in \NN$. (Da $l$ fest ist, sei $n < l$, da wir sonst schon fertig sind)\\
+				\textbf{Induktionsschritt}: $n \leadsto n+1$\\
 				Wir betrachten
 				\begin{align*}
 					\underbrace{\underbrace{M_1 \times M_2 \times \dots \times M_n}_\text{abzählbar nach I.V.}\times M_{n+1}}_\text{abzählbar nach...}
 				\end{align*}
-				\emph{Cantors erstem Diagonalargument} mit den abzählbaren Mengen $M_1 \times \dots \times M_n$ und $M_{n+1}$.
+				...\emph{Cantors erstem Diagonalargument} mit den abzählbaren Mengen $M_1 \times \dots \times M_n$ und $M_{n+1}$.
 			\end{proof}
 		\item
 			Zu zeigen: Sei $\emptyset \neq I$ eine abzählbare Indexmenge und $M_i$ $(i \in I)$ eine Familie abzählbarer Mengen. So ist
@@ -73,7 +73,7 @@
 				\begin{align*}
 					M' := \bigcup\limits_{p \in P} M_p \subseteq P \subseteq \NN
 				\end{align*}
-				eine abzählbare Menge, da $M'$ offensichtlich eine Teilmenge der abzählbaren Menge $\NN$ ist.
+				eine abzählbare Vereinigung abzählbarer Mengen, da $M'$ lediglich aus Potenzen von Primzahlen besteht und somit offensichtlich eine Teilmenge der abzählbaren Menge $\NN$ ist.
 			\end{proof}
 	\end{enumerate}
 	\pagebreak
@@ -135,6 +135,24 @@
 		\end{enumerate}
 
 	\section*{Aufgabe 3}
+		\begin{enumerate}[(a)]
+			\item
+				Zu zeigen: Ist $0 \leq a \leq \frac{1}{n}$ für alle $n \in \NN$, so ist $a = 0$.\\
+			\begin{proof}
+				Betrachten wir $(a_n)_{n \in \NN} := a$ als die Konstante Folge $a$ und definieren die Folge $(b_n)_{n \in \NN} = \frac{1}{n}$. Wir vermuten, dass $(b_n)$ gegen 0 konvergiert. Sei nun $\varepsilon > 0$, so finden wir mit dem \emph{Archimedischen Axiom} ein $N \in \NN$, so dass für alle $n \in \NN$ mit $n > N$ gilt: 
+				\begin{align*}
+					|b_n - 0| = \frac{1}{n} - 0 \leq \frac{1}{n} \leq \varepsilon,
+				\end{align*}
+				was unsere Vermutung bestätigt.\\Nun folgt mit dem \glqq Sandwich-Lemma\grqq\ da $0 \leq a \leq \frac{1}{n}$:
+				\begin{align*}
+						\lim\limit_{n \to \infty} 0  &\leq&  \lim\limit_{n \to \infty} (a_n) & \leq&  \lim\limit_{n \to \infty}  (b_n) \\
+						0  &\leq&  a  &\leq&  0\\
+				\end{align*}
+				Da $0 \leq a \leq 0$ gilt, muss $a$ bereits 0 sein.
+			\end{proof}		
+			\item
+				Die Aussage gilt auch noch, wenn $0 \leq a \leq \frac{1}{n}$ nicht mehr für alle, aber für endlich viele $n \in \NN$ gilt, da das Weglassen von \emph{fast allen} Folgegliedern (laut Satz aus der Vorlesung) nichts am Grenverhalten und insbesondere nichts am Grenzwert ändert.
+		\end{enumerate}
 
 	\section*{Aufgabe 4}
 		Bestimme die Grenzwerte für $n \to \infty$ von:
@@ -152,7 +170,7 @@
 				\item
 					Sei $P_n \in P[n]$ ein Polynom der Variable $n$ mit Koeffizienten in $\RR$. Sei außerdem $P_n \in O(n^{41})$
 					\begin{align*}
-						(b_n) =& \frac{n^{42} + 23n^7 + 2n^4 + 6}{((n+1)^2 + 5)^{21}}\\
+						(c_n) =& \frac{n^{42} + 23n^7 + 2n^4 + 6}{((n+1)^2 + 5)^{21}}\\
 						=& \frac{n^{42} + 23n^7 + 2n^4 + 6}{(n^2 + 2n + 6)^{21}}\\
 						=& \frac{n^{42} + 23n^7 + 2n^4 + 6}{n^{42} + P[n]}\\
 						=& \frac{1 + \frac{23}{n^{35}} + \frac{2}{n^{38}} + \frac{6}{n^{42}}}{1 + \frac{P[n]}{n^{42}}}\xrightarrow{n \to \infty} \frac{1 + 0 + 0 + 0}{1 + 0 + \dots + 0} = \frac{1}{1} = 1
@@ -167,7 +185,8 @@
 				\begin{align*}
 					(b_n) := \frac{1}{n} \sum\limits_{k = 1}^{n} a_k
 				\end{align*}
-				ebenfalls gegen $a$ konvergiert. Wir betrachten also:
+				ebenfalls gegen $a$ konvergiert.
+				\begin{proof} Wir betrachten also:
 				\begin{align*}
 					|b_n - a| = &\left|\left(\frac{1}{n} \sum\limits_{k=1}^{n} a_k \right) - a \right| \\
 					= & \left|\left( \frac{1}{n} \sum\limits_{k=1}^{n} (a_k - a) \right) \right|\\
@@ -183,12 +202,19 @@
 				\begin{align*}
 					\frac{1}{n'} \cdot c  \leq  \frac{\varepsilon}{2} \Leftrightarrow  n'  \geq \frac{2c}{\varepsilon}\\
 				\end{align*}
-				Wir stellen also an $n \in \NN$ die Bedingung, dass es größer als $max \lbrace n', N \rbrace$ sein muss. Damit folgt
+				Wir verlangen also, dass $n \in \NN$ größer als $max \lbrace n', N \rbrace$ sein muss. Damit folgt aus
 				\begin{align*}
-					& \frac{1}{n} \left(\sum\limits_{k=1}^{N} |a_k - a|\right)  + \frac{\varepsilon}{2}\\
-					& \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+					&= \frac{1}{n} \left(\sum\limits_{k=1}^{N} |a_k - a|\right)  + \frac{\varepsilon}{2}\\
+					\Rightarrow |b_n -a |& \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon\\
 				\end{align*}
-				die Konvergenz. \hfill \square
+				die Konvergenz.
+				\end{proof}
 			\item
-				 
+				Wir betrachten das Beispiel
+				\begin{align*}
+					& (a_n)_{n \in \NN} = (-1)^{n}\\
+					\text{und somit } & (b_n)_{n \in \NN} = \frac{1}{n} \sum_{k=1}^{n} (-1)^{n} = \begin{cases}0 \text{, falls $n$ gerade}\\ -\frac{1}{n} \text{, falls $n$ ungerade}\end{cases}
+				\end{align*}
+				unser $(b_n)$ konvergiert, da $\frac{1}{n} \geq |b_n| \geq 0$ das \glqq Sandwich-Lemma\grqq \ erfüllt, $(a_n)$ hingegen divergiert (das wurde in der Vorlesung gezeigt). Somit ist die Umkehrung der \emph{Césaro-Konvergenz} nicht möglich.
+		\end{enumerate}
 \end{document}
