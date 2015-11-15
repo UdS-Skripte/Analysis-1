@@ -629,5 +629,79 @@
         \lim\limits_{n \to \infty} a_n = \infty \Leftrightarrow \lim\limits_{n \to \infty} \frac{1}{a_n} = 0
     \end{align*}
 
+    \lecturedate{11.11.2015}    
+
+    \section{Definition: Reihe}
+    Sei $(a_n)_{n \in \NN}$ eine Folge, so nennen wir
+    \begin{align*}
+        (s_n)_{n \in \NN} := \sum_{k=1}^\infty a_k = \lim\limits_{n \to \infty} \sum\limits_{k=1}^n a_k
+    \end{align*}
+    eine \emph{unendliche Reihe} und notieren $\sum\limits_{k=1}^\infty a_k = s$, falls $s_n$ gegen $s$ konvergiert.
+
+    \section{Beispiele}
+    \begin{enumerate}[i)]
+        \item
+            \emph{Geometrische Reihe}: Ist $x \in \RR$ mit $|x| < 1$, dann ist $\sum\limits_{n=0}^\infty x^n = \frac{1}{1-x}$
+        \item
+            $\sum\limits_{n=1}^\infty \frac{1}{k \cdot (k+1)} = 1$
+        \item
+            $\sum\limits_{k=1}^\infty \frac{1}{k^2} = \frac{\pi^2}{6}$
+        \item
+            $\sum\limits_{k=1}^\infty \frac{1}{k} = \infty$
+    \end{enumerate}
+
+    \chapter{Vollständigkeitsaxiom}
+    \section{Motivation}
+    Wir wissen, dass $\QQ$ und $\RR$ angeordnete Körper sind. Aber offensichtlich unterscheiden sie sich noch in irgendwelchen Zahlen, welche wir noch nicht fassen können.
+
+    \section{Cauchy-Folge}
+    \begin{enumerate}[i)]
+
+    \end{enumerate}
+    Eine Folge $(a_n)_{n \in \NN}$ heißt \emph{Cauchy-Folge}, genau dann, wenn
+    \begin{align*}
+        \forall \varepsilon > 0 :\exists N \in \NN: \forall m,n \geq N: |a_n = a_m| < \varepsilon
+    \end{align*}
+
+    \section{Satz}
+    Folgende Aussagen über die Folge $(a_n)_{n \in \NN}$ sind äquivalent:
+    \begin{itemize}
+        \item
+            $(a_n)$ ist eine Cauchy-Folge.
+        \item
+            $(a_n)$ ist eine konvergente Folge.
+    \end{itemize}
+
+    \section{Vollständigkeitsaxiom für $\RR$}
+    Jede Cauchy-Folge reeller Zahlen konvergiert gegen einen Grenzwert in $\RR$.
+
+    \section{Bemerkung}
+    \begin{enumerate}[i)]
+        \item
+            Das Vollständigkeitsaxiom ist unabhängig von den anderen (Körper-)Axiomen.
+        \item
+            Mit dem Cauchy-Kriterium lässt sich Konvergenz überprüfen, ohne den Grenzwert zu kennen.
+    \end{enumerate}
+
+    \section{Notation}
+    Für $a,b \in \RR$ mit $a < b$ bezeichnen wir
+    \begin{align*}
+        [a,b] &:= \lbrace x \in \RR \mid a \leq x \leq b \rbrace \text{ als das \emph{abgeschlossene Intervall} von $a$ nach $b$}\\
+        (a,b) := ]a,b[ &:= \lbrace x \in \RR \mid a < x < b \rbrace \text{ als das \emph{offene Intervall} von $a$ nach $b$}\\
+        [a,b) := [a,b[ &:= \lbrace x \in \RR \mid a \leq x < b \rbrace \text{ als das \emph{halboffene Intervall} von $a$ nach $b$}
+    \end{align*}
+
+    \newcommand{\sebsut}{\supset}
+    \newcommand{\sebsuteq}{\supseteq}
+
+    \section{Intervallschachtelungsprinzip}
+    Sei $I_1 \sebsut \dots \sebsut I_n \sebsut \dots$ eine Folge abgeschlossener Intervalle mit $\lim\limits_{n \to \infty} |I_n| = 0$, dann ist
+    \begin{align*}
+        \bigcap_{n \in \NN} I_n = \lbrace a \rbrace
+    \end{align*}
+    eindeutig.
+
+    \section{Satz}
+    Das Vollständigkeitsaxiom und Intervallschachtelungsprinziip sind äquivalent.
 
 \end{document}
