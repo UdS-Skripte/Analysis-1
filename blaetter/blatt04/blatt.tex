@@ -1,0 +1,149 @@
+\documentclass{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{ngerman}
+%\usepackage[german]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[hidelinks]{hyperref}
+
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+
+\begin{document}
+
+	\title{Analysis 1}
+ 	\author{Dominic Zimmer}
+ 	\subtitle{Übungsblatt 4, Abgabe}
+ 	%\date{18. Mai 1999}
+ 	\publishers{Übungsgruppe: Rami Ahmad}
+  	\maketitle 
+
+	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+
+	\emph{Was ist krumm, gelb, abgeschlossen und normiert?}
+
+	\section*{Aufgabe 2}
+	\begin{enumerate}[(a)]
+		\item[(b)]
+			Sei $0 < q < 1$. Wir wollen die rekursiv definierte Folge
+			\begin{align*}
+				(a_n)_{n \in \NN} = \begin{cases}0 &\text{ falls n = 1}\\ a_{n-1} \cdot (1-q)^2 + q &\text{ sonst}\end{cases}
+			\end{align*}
+			betrachten. Zuerst soll die konvergenz von $a_n$ gezeigt werden. Wir können vorraussetzen, dass die Abbildung $f \colon \RR |_{[0,1]} \to \RR$ streng monoton steigt. Aus dem Zwischenwertsatz folgt, dass es genügt die Randfälle für $q$ zu betrachten.
+			Sei $q=0$, so ist $a_n = a_{n-1} \cdot 1$. Ist $q=1$, so ist $a_n = a_{n-1} \cdot 0 + 1$. Mit $a_1 = 0$ sieht man also leicht, dass alle Werte $a_n$ in $[0,1]$ liegen. (Da die Ordnung $0 < q< 1$ strikt ist, sieht man sogar, dass für alle $n \in \NN_{>0}$ die Werte in $]0,1[$ liegen, dies ist jedoch eine Teilmenge von $[0,1]$, also keine Einschränkung.) Da $a_n = a_{n-1} \cdot (1-q)^2 + q$ für alle $q \in ]0,1[$ offensichtlich streng monoton fällt, konvergiert $a_n$, da die Folge von unten durch $0$ beschränkt ist.\\
+			Betrachten wir nun den Grenzübergang für $n \to \infty$. Da $a_n$ konvergiert, gilt für den Grenzwert $a$:
+			\begin{align*}
+				\forall \varepsilon_1 > 0: \exists N_1 \in \NN: &|a_n - a| < \varepsilon_1 \text{ für alle $n \in \NN$ mit $n > N_1$}\\
+				\forall \varepsilon_2 > 0: \exists N_2 \in \NN: &|a_{n+1} - a| < \varepsilon_2 \text{ für alle $n \in \NN$ mit $n > N_2$}
+			\end{align*}
+			Wählen wir nun $\varepsilon := min\lbrace \varepsilon_1, \varepsilon_2 \rbrace$ und $N = max \lbrace N_1, N_2\rbrace$ erfüllen $\varepsilon$ und $N$ die Bedingung für $a_n$ und $a_{n+1}$. Daraus folgern wir, dass der Grenzwert von aufeinander folgenden Folgegliedern den gleichen Grenzwert anstrebt für alle genügend großen $n$ (also $n > N$). Aus der rekursiven gleichung dürfen wir nun also ableiten:
+			\begin{align*}
+				&\lim\limits_{n \to \infty} a_{n+1} & =& \lim\limits_{n \to \infty} a_n \cdot (1-q)^2 + q\\
+				\Rightarrow & a & =& a \cdot (1-q)^2 + q\\
+				\text{(umformen) }\Leftrightarrow & a & = & \frac{1}{2-q} 
+			\end{align*}
+			Also ergibt sich für $a_n$ als Grenzwert $\frac{1}{2-q}$
+		\item[(a)]
+			Modelliert man die Aufgabe passend, so dass die Folge $(a_n)$ den Weingehalt der Lösung angibt, erhält man geradeaus durch Aufschreiben die Rekursionsgleichung
+			\begin{align*}
+				(a_n)_{n \in \NN} = \begin{cases}0 &\text{ falls n = 1} \\ a_{n-1} \cdot \frac{9}{16} + \frac{1}{4} &\text{ sonst}\end{cases}
+			\end{align*}
+			Diese Rekursionsgleichung hat (zufälligerweise) die selbe Form wie die aus (b). Somit ergibt sich mit $q = \frac{1}{4}$ für den Grenzwert:
+			\begin{align*}
+				\lim\limits_{n \to \infty} a_n = a_{n-1} \cdot \frac{9}{16} + \frac{1}{4} \xRightarrow{(b)} \frac{1}{2-\frac{1}{4}} = \frac{4}{7} 
+			\end{align*}
+			Das Mischverhältnis \glqq Wein zu Wasser\grqq\  pendelt sich also bei $4:3$ ein.
+	\end{enumerate}
+
+	\section*{Aufgabe 3}
+	\begin{enumerate}[(a)]
+		\item
+			Wähle $(a_n) = n^2$ und $(b_n) = \frac{1}{n}$. Dann gilt:
+			\begin{align*}
+				&\lim\limits_{n \to \infty} (a_n) = \underbrace{\lim\limits_{n \to \infty} n}_{\rightarrow\infty} \cdot \underbrace{\lim\limits_{n \to \infty} n}_{\rightarrow\infty} = \infty\\
+				&\lim\limits_{n \to \infty} (b_n) = \lim\limits_{n \to \infty} \underbrace{\frac{1}{n}}_{konvergiert nach Vorlesung} = 0\\
+				\Rightarrow& \lim\limits_{n \to \infty} (a_n) \cdot (b_n) = \lim\limits_{n \to \infty} n^2 \cdot \frac{1}{n} = \lim\limits_{n \to \infty} n = \infty
+			\end{align*}
+		\item
+			Wähle $(a_n) = n^2$ und $(b_n) = -\frac{1}{n}$. Dann gilt:
+			\begin{align*}
+				&\lim\limits_{n \to \infty} (a_n) = \underbrace{\lim\limits_{n \to \infty} n}_{\rightarrow\infty} \cdot \underbrace{\lim\limits_{n \to \infty} n}_{\rightarrow\infty} = \infty\\
+				&\lim\limits_{n \to \infty} (b_n) = \lim\limits_{n \to \infty} \underbrace{-1}_{\text{konstanten konvergieren}} \cdot \underbrace{\frac{1}{n}}_{\text{konvergiert nach Vorlesung}} = -1 \cdot 0 = 0 \\
+				\Rightarrow& \lim\limits_{n \to \infty} (a_n) \cdot (b_n) = \lim\limits_{n \to \infty} n^2 \cdot \left(\frac{-1}{n}\right) = \lim\limits_{n \to \infty} (-n) = -\infty
+			\end{align*}
+		\item
+			Wähle $(a_n) = n$ und $(b_n) = \frac{c}{n}$ mit $c \in \RR$ Dann gilt:
+			\begin{align*}
+				&\lim\limits_{n \to \infty} (a_n) = \underbrace{\lim\limits_{n \to \infty} n}_{\rightarrow\infty} = \infty\\
+				&\lim\limits_{n \to \infty} (b_n) = \lim\limits_{n \to \infty} \underbrace{c}_{\text{konstanten konvergieren}} \cdot \underbrace{\frac{1}{n}}_{\text{konvergiert nach Vorlesung}} = -1 \cdot 0 = 0 \\
+				\Rightarrow& \lim\limits_{n \to \infty} (a_n) \cdot (b_n) = \lim\limits_{n \to \infty} n \cdot \left(\frac{c}{n}\right) = \lim\limits_{n \to \infty} c = c
+			\end{align*}
+			Für beliebige $c \in \RR$.
+		\item
+			Wähle $(a_n) = n$ und $(b_n) = \frac{(-1)^n}{n}$. Dann gilt:
+			\begin{align*}
+				&\lim\limits_{n \to \infty} (a_n) = \underbrace{\lim\limits_{n \to \infty} n}_{\rightarrow\infty} = \infty\\
+				&\lim\limits_{n \to \infty} (b_n) = \lim\limits_{n \to \infty}\underbrace{(-1)^n}_{\text{beschränkt}} \cdot \underbrace{\frac{1}{n}}_{\text{konvergiert nach Vorlesung}} = 0 \\
+				\Rightarrow& \lim\limits_{n \to \infty} (a_n) \cdot (b_n) = \lim\limits_{n \to \infty} n \cdot \frac{(-1)^n}{n} = \lim\limits_{n \to \infty} (-1)^n
+			\end{align*}
+			durch $\pm 1$ beschränkt, konvergiert aber nicht.
+	\end{enumerate}
+
+	\section*{Aufgabe 4}
+	Wir definieren:
+	\begin{align*}
+		A(a,b) := \frac{a+b}{2}, \text{\ \ \ \ }G(a,b) := \sqrt{ab},\text{\ \ \ \ } H(a,b) := \frac{2ab}{a+b}
+	\end{align*}
+	Für alle $a,b \in \RR_{>0}$ gilt zu zeigen:
+	\begin{align*}
+		H(a,b) \leq G(a,b) \leq A(a,b)
+	\end{align*}
+	Wir zeigen zunächst $G(a,b) \leq A(a,b)$
+	\begin{align*}
+		&G(a,b) &\leq& A(a,b)\\
+		\Leftrightarrow &\sqrt{ab}&\leq &\frac{a+b}{2}\\
+		\xRightarrow{*} & ab &\leq &\frac{a^2}{2} + ab + \frac{b^2}{2}\\
+		\Leftrightarrow & 0 &\leq &\underbrace{\frac{a^2 + b^2}{2}}_{>0 \text{, da $a,b > 0$}}\\
+	\end{align*}
+	Nun zeigen wir $H(a,b) \leq G(a,b)$:
+	\begin{align*}
+		&H(a,b) & \leq& G(a,b)\\
+		\xRightarrow{*} &\frac{2ab}{a+b} &\leq& \sqrt{ab}\\
+		\Leftrightarrow &\frac{4a^2b^2}{(a+b)^2} &\leq& ab\\
+		\Leftrightarrow &4ab &\leq& (a+b)^2\\
+		\Leftrightarrow &0 &\leq& a^2 - 2ab + b^2 \\
+		\Leftrightarrow &0 &\leq& \underbrace{(a-b)^2}_{>0, \text{ da $a,b > 0$}}
+	\end{align*}
+	*: da $a,b > 0$ erhält Quadrieren die Ungleichung.
+	
+	\vfill
+	\emph{Ein Bananarchraum.}
+
+	
+
+\end{document}
