@@ -1,0 +1,122 @@
+\documentclass{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{ngerman}
+%\usepackage[german]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[hidelinks]{hyperref}
+
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+
+\begin{document}
+
+	\title{Analysis 1}
+ 	\author{Dominic Zimmer}
+ 	\subtitle{Übungsblatt 5, Abgabe}
+ 	\publishers{Übungsgruppe: Rami Ahmad}
+  	\maketitle 
+
+	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+
+	\section*{Aufgabe 1}
+	Gegeben sind die Folge $(f_n)_{n \in \NN_{>0}}$ definiert durch $f_0 = 0$, $f_1= 1$ und $f_{n+1} = f_n + f_{n-1}$, die Folge $(a_n)_{n \in \NN} = \frac{f_{n+1}}{f_n}$ und der \emph{goldene Schnitt} $g$ als di eindeutig bestimmte, positive Lösung der Gleichung $g^2 = 1+g$.
+	\begin{enumerate}[(a)]
+		\item
+            Zu zeigen ist:
+            \begin{align*}
+                g = & 1 + \frac{1}{g}\\
+                \Leftrightarrow g \cdot g = & 1 \cdot g + \frac{1 \cdot g}{g}\\
+                \Leftrightarrow g^2 = & 1 + g~~~ \square
+            \end{align*}
+            und
+            \begin{align*}
+                a_{n+1} = & 1 + \frac{1}{a_n}\\
+                \Leftrightarrow \frac{f_{n+2}}{f_{n+1}} = & 1 + \frac{f_n}{f_{n+1}}\\
+                \Leftrightarrow f_{n+2} = & 1 \cdot f_{n+1} + \frac{f_n \cdot f_{n+1}}{f_{n+1}}\\
+                \Leftrightarrow f_{n+2} = & f_{n+1} + f_n ~~~ \square
+            \end{align*}
+        \item
+            Durch Induktion ist zu zeigen, dass
+            \begin{align*}
+                \vert a_n - g \vert = \frac{1}{f_n g^n}
+            \end{align*}
+            für alle $n \in \NN$ gilt.
+            \begin{proof}
+                Induktionsanfang: $n=1$
+                \begin{align*}
+                    \vert a_n - g \vert = & \vert a_1 - g \vert&\\ 
+                    = & \vert \frac{f_2}{f_1} - g\vert&\\
+                    = & \vert 1 - g \vert&\\
+                    = & \vert 1 - (1 + \frac{1}{g}) \vert&\\
+                    = & \vert - \frac{1}{g} \vert&\\
+                    = & \frac{1}{g}&\\
+                    = & \frac{1}{f_1 g} &= \frac{1}{f_n g} ~~~ \text{(ok)}\\
+                \end{align*}
+                Induktionsvorraussetzung: Sei die Behauptung bereits gezeigt für ein festes aber beliebiges $n \in \NN$.\\
+                Induktionsschritt: $n \leadsto n+1$
+                \begin{align*}
+                    \vert a_{n+1} - g \vert =  & \vert 1 + \frac{1}{a_n} - g \vert ~~~ \text{nach (a)} \\
+                    = & \vert 1 + \frac{f_n}{f_{n-1}} - g \vert\\
+                    = & \vert 1 + \frac{f_{n-1}}{f_{n-1}} + \frac{f_{n-2}}{f_
+                    {n-1}} - g \vert\\
+                    = & \vert 1 + 1 + a_{n-1} - g \vert\\
+                    = & \frac{1}{f_{n+1} g^{n+1}}\\
+                \end{align*}
+            \end{proof}
+	\end{enumerate}
+
+    \section*{Aufgabe 2}
+
+    \section*{Aufgabe 3}
+    Die Folgen $(a_{2n})_{n \in \NN}$, $(a_{2n + 1})_{n \in \NN}$ und $(a_{5n})_{n \in \NN}$ konvergieren. Konvegriert auch $(a_n)_{n \in \NN}$?
+    \\\\
+    \begin{proof}
+    Wir betrachten $(a_{5n})_{n \in \NN}$. Diese Teilfolge besteht aus den Gliedern ($a_5, a_{10}, a_{15}, \dots)$. Somit teilt sie sich unendlich viele Folgenglieder mit $(a_{2n})_{n \in \NN}$ und mit $(a_{2n +1})_{n \in \NN}$, nämlich $(a_{5}, a_{15}, a_{25}, \dots)$ bzw. $(a_{10}, a_{20}, a_{30}, \dots)$. Da wir von $(a_{5n})_{n \in \NN}$ bereits wissen, dass die Folge konvergiert, konvergieren auch ihre Teilfolgen - insbesondere gegen den gleichen Grenzwert.
+    Somit konvergieren $(a_{2n})$ und $(a_{2n + 1})$ gegen den gleichen Grenzwert wie $(a_{5n})$.\\
+    Da sich $(a_n)_{n \in \NN}$ disjunkt in die zwei Teilfolgen $(a_{2n})$ und $(a_{2n + 1})$ zerlegen lässt, konvergiert die Folge $(a_{n})$ ebenfalls gegen den gleichen Grenzwert.
+    \end{proof}
+
+    \section*{Aufgabe 4}
+    Jede Folge $(a_{n})$ reeller Zahlen besitzt entweder eine konvergente oder eine bestimmt divergente Teilfolge.
+    \begin{proof}
+    Wir betrachten zwei Fälle:
+    \begin{itemize}
+        \item
+            Die Folge sei beschränkt.\\
+            Nach dem Satz von \emph{Bolzano-Weierstraß} hat $(a_n)_{n \in \NN}$ eine konvergente Teilfolge. Somit gilt die Aussage.
+        \item
+            Die Folge ist unbeschränkt.\\
+            Sei ohne Einschränkung die Folge nach oben unbeschränkt (der Beweis für "`nach unten unbeschränkt"' verläuft ganz analog). Wir konstruieren eine Folge von Indizes $(i_n) = i_1, i_2, \dots$ unter der Invariante, dass $a_{i_k} < a_{i_{k+1}}$. Dass eine solche Folge existiert, folgt daraus, dass die Folge unbeschränkt ist. Betrachten wir nun die Teilfolge $(a_{i_n})_{n \in \NN}$. Nach Konstruktion gilt für den Grenzwert
+            \begin{align*}
+                \lim\limits_{n \to \infty} (a_{i_k}) = \infty
+            \end{align*}
+    \end{itemize}
+    \end{proof}
+
+\end{document}
