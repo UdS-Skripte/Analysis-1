@@ -348,7 +348,7 @@
             ||x|-|y|| \leq |x-y|
         \end{equation*}
 
-    \section{TODO: FEHLT!!}
+    \section{TODO: Buggy}
 
     \lecturedate{02.11.2015}
 
@@ -655,9 +655,6 @@
     Wir wissen, dass $\QQ$ und $\RR$ angeordnete Körper sind. Aber offensichtlich unterscheiden sie sich noch in irgendwelchen Zahlen, welche wir noch nicht fassen können.
 
     \section{Cauchy-Folge}
-    \begin{enumerate}[i)]
-
-    \end{enumerate}
     Eine Folge $(a_n)_{n \in \NN}$ heißt \emph{Cauchy-Folge}, genau dann, wenn
     \begin{align*}
         \forall \varepsilon > 0 :\exists N \in \NN: \forall m,n \geq N: |a_n = a_m| < \varepsilon
@@ -691,11 +688,8 @@
         [a,b) := [a,b[ &:= \lbrace x \in \RR \mid a \leq x < b \rbrace \text{ als das \emph{halboffene Intervall} von $a$ nach $b$}
     \end{align*}
 
-    \newcommand{\sebsut}{\supset}
-    \newcommand{\sebsuteq}{\supseteq}
-
     \section{Intervallschachtelungsprinzip}
-    Sei $I_1 \sebsut \dots \sebsut I_n \sebsut \dots$ eine Folge abgeschlossener Intervalle mit $\lim\limits_{n \to \infty} |I_n| = 0$, dann ist
+    Sei $I_1 \supset \dots \supset I_n \supset \dots$ eine Folge abgeschlossener Intervalle mit $\lim\limits_{n \to \infty} |I_n| = 0$, dann ist
     \begin{align*}
         \bigcap_{n \in \NN} I_n = \lbrace a \rbrace
     \end{align*}
@@ -704,6 +698,241 @@
     \section{Satz}
     Das Vollständigkeitsaxiom und Intervallschachtelungsprinziip sind äquivalent.
 
-    
+    \lecturedate{18.11.2015}
+
+    \section{Bemerkung}
+    \begin{enumerate}
+    	\item
+    	Beachte, adss wir im Intervallschachtelungsprinzip \emph{abgeschlossene} Intervalle brauchen. Zum Beispiel:
+    	\begin{align*}
+    		\bigcap\limits_{n \in \NN} \left]0, \frac{1}{n}\right] = \emptyset
+    	\end{align*}
+    	\item
+    	Das Vollständigkeitsaxiom benutzt weniher die Struktur von $\RR$ als das Intervallschachtelungsprinzip und ist deshalb besser geeignet um den Begriff der Vollständigkeit in allgemeinen Situationen zu definieren.
+    \end{enumerate}
+
+    \section{Definition}
+    Sei $(a_n){n \in \NN})$ eine Folge und $n_1 < n_2 < n_3 < \dots$ eine aufsteigende Folge natürlicher Zahlen. Dann heißt die Folge $(a_{n_k})_{k \in \NN}$ \emph{Teilfolge} der Folge $(a_n)_{n \in \NN}$
+
+    \section{Bemerkung}
+    Sei $(a_{n_k})$ Eine Teilfolge von $(a_n)$. Impliziert die Konvergenz der Folge $(a_n)$ die Konvergenz der Teilfolge $(a_{n_k})$. Außerdem sind die beiden Grenzwerte gleich.
+
+    \section{Satz von Bolzano-Weierstraß}
+    Jede beschränkte Folge reeller Zahlen besitzt eine konvergente Teilfolge.
+
+    \section{Bemerkung}
+    Jede Folge reeller Zahlen besitzt eine Teilfolge die entweder konvergiert oder bestimmt divergiert.
+
+    \section{Definition}
+    Eine Folge $(a_n)_{n \in \NN}$ heißt 
+    $\begin{cases}
+	    \text{monoton wachsend}\\
+	    \text{monoton fallend}\\
+	    \text{strikt monoton wachsend}\\
+	    \text{strikt monoton fallend}\\
+    \end{cases}$
+    , falls $\begin{cases}
+    a_n \leq a_{n+1}\\
+    a_n \geq a_{n+1}\\
+    a_n <a_{n+1}\\
+    a_n > a_{n+1}\\
+    \end{cases}$
+     $\forall n \in \NN$ gilt.
+
+   	\section{Satz}
+   	Jede beschränkte monotone Folge ist konvergent.
+
+   	\section{Satz}
+   	Seien $a, x_0 >0$ reelle Zahlen. Definieren wir rekursiv
+   	\begin{align*}
+   		x_{n+1} = \frac{1}{2}\left(x_n + \frac{q}{x_n}\right)~~~ \text{für $n \geq 0$,}
+   	\end{align*}
+   	dann konvergiert $(x_n)_{n \in \NN}$ gegen die eindeutig bestimmte positive Lösung der Gleichung
+   	\begin{align*}
+   		x^2 = a
+   	\end{align*}
+
+   	\section{Bemerkung}
+   	Allgemein kann man auch die $k$-te Wurzel für ein beliebiges $k$ und $a \geq 0$ durch folgenden Algorithmus bestimmen:
+   	\begin{align*}
+   		x_{n+1} = \frac{1}{k} \left( (k - 1) \cdot x_n + \frac{a}{x_n^{k-1}}\right)
+   	\end{align*}
+
+   	\section{Satz}
+   	Die Folge $(\sqrt[n]{n})_{n \in \NN}$ ist konvergent mit $\lim\limits_{n \to \infty} \sqrt[n]{n} = 1$.
+
+   	\section{Korrolar}
+   	Sei $a>0$. Dann konvergiert $(\sqrt[n]{a})_{n \in \NN}$ gegen $1$.
+
+   	\section{Bemerkung}
+   	Das Vollständigkeitsaxiom erlaubt die Darstelung reller Zahlen durch \emph{b-adische Brüche}. Sei $b \in \NN, b \geq 2$ die \emph{Basis}. Ein \emph{b-adischer Bruch} ist eine Reihe der Gestalt
+   	\begin{align*}
+   		\pm\sum\limits_{n = -k}^\infty a_n b^{-n}
+   	\end{align*}
+   	mit $(a_n)_{n \in \NN}$ mit $k>0, 0 \leq a_n \leq b$. Man schreibt üblicherweise (mit festem $b$):
+   	\begin{align*}
+   		a_{-k}\dots a_{-1} a_0 . a_1 a_2 a_3 \dots
+   	\end{align*}
+   	Für $b = 10$ nennt man diese Darstellung einen Dezimalbruch. Für $b=2$ einen dyadischen Bruch. Es gilt außerdem:
+   	\begin{enumerate}
+   		\item
+   		Jeder b-adische Bruch stellt eine Cauchy-Folge dar und konvergiert somit gegen eine reelle Zahl.
+   		\item
+   		Sei $b > 2 \in \NN$. Dann lässt sich jede reelle Zahl in einen b-adischen Bruch entwickeln.
+   		\item
+   		Die Darstellung ist (bis auf Perioden) eindeutig.
+   	\end{enumerate}
+
+   	\chapter{Konvergenz für Reihen}
+
+   	\section{Satz: Cauchy-Kriterium}
+   	\begin{align*}
+   		\sum\limits_{n = 1}^\infty a_n \text{ konvergent} \Leftrightarrow \forall \varepsilon > 0 :\exists N \in \NN: \forall m \geq n \in \NN : \left| \sum\limits_{k = n+1}^m\right| \leq \varepsilon
+   	\end{align*}
+
+   	\section{Satz}
+   	Wenn $\sum_{n =1}^\infty a_n$ konvergiert, so ist $\lim_{n \to \infty} a_n = 0$. Die Umkehrung gilt im Allgemeinen nicht.
+
+   	\section{Bemerkung}
+   	Wie $\sum\limits_{n = 1}^\infty \frac{1}{n} =\infty $ zeigt, gilt die Umkehrung jedoch nicht. $\lim\limits_{n = 1}^\infty a_n = 0$ ist zwar notwendig, aber nicht hinreichend für die Konvergenz der Reihe.
+
+   	\lecturedate{23.11.2015}
+
+   	\section{Satz}
+   	Eine Reihe $\sum_{n =1}^\infty a_n$ mit $(a_n)_{n \in \NN} \geq 0$ konvergiert genau dann, wenn die Folge $(s_n)_{n \in \NN}$ der Partialsummen beschränkt ist.
+
+   	\section{Satz}
+   	\begin{enumerate}
+   		\item
+   		$\sum\limits_{n = 1}^\infty \frac{1}{n}$ divergiert
+   		\item
+   		$\sum\limits_{n=1}^\infty \frac{1}{n^2}$ konvergiert (gegen $\frac{\pi^2}{6}$)
+   	\end{enumerate}
+
+   	\section{Satz: Majorantenkriterium}
+   	Ist $\vert a_n\vert \leq \vert c_n \vert, \forall n$ und konvergiert $\sum\limits_{n =1}^\infty \vert c_n \vert$, so konvergiert auch $\sum\limits_{n =1}^\infty \vert a_n \vert$ und es gilt $\left\vert\sum\limits_{n =1}^\infty a_n \right\vert \leq \sum\limits_{n =1}^\infty \vert c_n \vert$
+
+   	\section{Bemerkung}
+   	Aus der inversen Dreiecksungleichung folgt, dass
+   	\begin{align*}
+   		\lim\limits_{n \to \infty} a_n = a \Rightarrow \vert \lim\limits_{n \to \infty} a_n \vert = \vert a \vert
+   	\end{align*}
+
+   	\section{Definition}
+   	Eine Reihe $\sum\limits_{n = 1}^\infty a_n$ heißt \emph{absolut konvergent}, wenn $\sum\limits_{n = 1}^\infty \vert a_n\vert$ konvergiert.
+
+   	\section{Bemerkung}
+   	\begin{enumerate}[1)]
+   		\item
+   		Jede absolut konvergente Reihe konvergiert, da $\sum_{n = 1}^\infty \vert a_n \vert$ als Majorante dient.
+   		\item
+   		Die Umkehrung gilt im Allgemeinen nicht. Zum Beispiel
+   		\begin{itemize}
+   			\item
+   			$\sum\limits_{n = 1}^\infty \vert \frac{{-1}^n}{n} \vert = \infty $
+   			\item
+   			$\sum\limits_{n = 1}^\infty \frac{{-1}^n}{n} = ln(2) $
+   		\end{itemize}
+   	\end{enumerate}
+
+   	\section{Quotientenkriterium}\label{6.10}
+   	Betrachten wir $\sum\limits_{n = 1}^\infty a_n$:
+   	\begin{enumerate}
+   	\item
+   		Falls es ein $n_0 \in \NN$ und ein $\theta$ mit $0 < \theta < 1$ gibt, so dass
+   		\begin{align*}
+   			\left\vert \frac{a_{n+1}}{a_n} \leq \theta \right\vert ~~~ \forall n \geq n_0, \text{ dann konvergiert $\sum\limits_{n = 1}^\infty a_n$ sogar absolut}
+   		\end{align*}
+   	\item
+   		Falls es ein $n_0 \in \NN$ und ein $\theta$ mit $ \theta \geq 1$ gibt, so dass
+   		\begin{align*}
+   			\left\vert \frac{a_{n+1}}{a_n} \geq \theta \right\vert ~~~ \forall n \geq n_0, \text{ dann divergiert $\sum\limits_{n = 1}^\infty a_n$}
+   		\end{align*}
+   	\end{enumerate}
+
+   	\section{Bemerkung}
+   	Aus \ref{6.10} folgt: Sei $(a_n)_{n \in \NN}$ so, dass $\alpha = \lim\limits_{n \to \infty} \vert \frac{a_{n+1}}{a_n}\vert$ so gilt für
+   	\begin{enumerate}
+   		\item
+   		$\alpha < 1$, dass $\sum\limits_{n=1}^\infty a_n$ absolut konvergiert
+   		\item
+   		$\alpha < 1$, dass $\sum\limits_{n=1}^\infty a_n$ divergiert
+   		\item
+   		$\alpha = 1$, dass wir keine Aussage über die Reihe $\sum\limits_{n=1}^\infty a_n$ treffen können.
+   	\end{enumerate}
+
+   	\section{Wurzelkriterium}
+   	Betrachten wir $\sum\limits_{n = 1}^\infty a_n$:
+   	\begin{enumerate}
+   	\item
+   	Falls ein $0 < \theta < 1$ und $n_0 \in \NN$ existieren, so dass 
+   	\begin{align*}
+   		\sqrt[n]{\vert a_n \vert} \leq \theta ~~~ \forall n \geq n_0, \text{ so konvergiert $\sum\limits_{n=1}^\infty a_n$ absolut.}
+   	\end{align*}
+   	\item
+   	Falls ein $\theta \geq 1$ und $n_0 \in \NN$ existieren, so dass 
+   	\begin{align*}
+   		\sqrt[n]{\vert a_n \vert} \geq \theta \geq 1 ~~~ \forall n \geq n_0, \text{ so divergiert $\sum\limits_{n=1}^\infty a_n$.}
+   	\end{align*}
+   	\end{enumerate}
+
+   	\section{Bemerkung}
+   	Sei $\sum\limits_{n=1}^\infty a_n$ eine Reihe, so dass der Grenzwert $\beta := \lim\limits_{n \to \infty} \sqrt[n]{\vert a_n \vert}$ existiert,
+   	\begin{itemize}
+   		\item
+   		Falls $\beta < 1$, so konvergiert die Reihe.
+   		\item
+   		Falls $\beta > 1$, so divergiert die Reihe.
+   		\item
+   		Falls $\beta = 1$, so können wir keine Aussage treffen.
+   	\end{itemize}
+
+   	\section{Satz: Leibnitzkriterium}
+   	Sei $(a_n)_{n \in \NN}$ eine positive, monoton fallende Nullfolge, dann konvergiert $\sum\limits_{n=1}^\infty {-1}^n a_n$.
+
+   	\lecturedate{25.11.2015}
+
+   	\section{Beispiel}
+   	Die alternierende harmonische Reihe konvergiert; jedoch nicht absolut.
+
+   	\section{Definition}
+   	Eine Reihe, die konvergiert, jedoch nicht absolut konvergiert, nennen wir bedingt konvergent.
+
+
+   	\chapter{Umordnung von Reihen}
+   	\section{Motivation}
+   	Für endliche Summen ist die Reihenfolge der Summierung bezüglich der Summe egal. Bei unendlichen Summen, also Reihen ist dies nicht immer der Fall. 
+
+   	\section{Beispiel}
+   	Man kann zum Beispiel die alternierende Harmonische Reihe so umordnen, dass sie scheinbar jeden Grenzwert annimmt.
+
+   	\section{Bemerkung}
+   	Aufgrund dieser Eigenschaft bedingt konvergenter Reihen werden wir Summierbarkeit nun weiter untersuchen.
+
+   	\section{Bezeichnung}
+   	Sei $I$ eine Indexmenge. Eine Abbildung $(a_i)_{i \in I} \colon I \to \RR$ heißt eine \emph{Familie reeller Zahlen}.
+
+   	\section{Definition}
+   	Sei $(a_i)$ mit Indexmenge $I$ eine Familie reller Zahlen. Wir nennen $(a_i)$ \emph{summierbar}, wenn die folgenden Äquivalenzen gelten:
+	\begin{enumerate}[i)]
+   		\item
+   		$\forall \varepsilon > 0: \exists E \subset I: \sum\limits_{i \in \F} \vert a_i \vert < \varepsilon ~~~ \forall \text{ endlichen } F \subset I \text{ mit } F \cap E = \emptyset$
+   		\item
+   		$\exists k > 0 : \sum\limits_{i \in \G} \vert a_i \vert \leq k ~~~ \forall \text{ endlichen } G \subset I$
+   		\item
+   		Für jede Abzählung von $I$ ist $\sum\limits_{i_n \in I} a_{i_n}$ absolut konvergent.
+   		\item
+   		Für mindestens eine Abzählung von $i$ ist $\sum\limits_{i_n \in I} a_{i_n}$ absolut konvergent.
+   	\end{enumerate}
+
+   	\section{Bemerkung}
+   	Seien $(a_i)$ und $(b_i)$ summierbare Familien. Dann sind sie bezüglich Summierbarkeit linear.
+
+   	\section{Definition}
+   	Sei $I$ abzählbar und $(a_i)_{i \in I}$ eine Familie reeller Zahlen. $(a_i)$ heißt summierbar mit Summe $s$, wenn
+   	\begin{align*}
+   		\exists s \in \RR: \forall \varepsilon > 0: \exists \text{ endlich } F \subset I, E \subset I, F \subsetneq E: \vert s - \sum\limits_{i \in \I} a_i \vert < \varepsilon
+   	\end{align*}
+
 
 \end{document}

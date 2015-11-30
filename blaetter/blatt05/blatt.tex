@@ -46,6 +46,11 @@
 
 	\section*{Aufgabe 1}
 	Gegeben sind die Folge $(f_n)_{n \in \NN_{>0}}$ definiert durch $f_0 = 0$, $f_1= 1$ und $f_{n+1} = f_n + f_{n-1}$, die Folge $(a_n)_{n \in \NN} = \frac{f_{n+1}}{f_n}$ und der \emph{goldene Schnitt} $g$ als di eindeutig bestimmte, positive Lösung der Gleichung $g^2 = 1+g$.
+	\begin{align*}
+		 & g^2 & = & 1+g 	\\
+		\Leftrightarrow & \left(g - \frac{1}{2} \right)^2 & = & \frac{5}{4}\\
+		\Rightarrow & g & = & \frac{1 + \sqrt{5}}{2}\\
+    \end{align*}
 	\begin{enumerate}[(a)]
 		\item
             Zu zeigen ist:
@@ -61,6 +66,7 @@
                 \Leftrightarrow f_{n+2} = & 1 \cdot f_{n+1} + \frac{f_n \cdot f_{n+1}}{f_{n+1}}\\
                 \Leftrightarrow f_{n+2} = & f_{n+1} + f_n ~~~ \square
             \end{align*}
+	\pagebreak
         \item
             Durch Induktion ist zu zeigen, dass
             \begin{align*}
@@ -71,34 +77,99 @@
                 Induktionsanfang: $n=1$
                 \begin{align*}
                     \vert a_n - g \vert = & \vert a_1 - g \vert&\\ 
-                    = & \vert \frac{f_2}{f_1} - g\vert&\\
-                    = & \vert 1 - g \vert&\\
-                    = & \vert 1 - (1 + \frac{1}{g}) \vert&\\
-                    = & \vert - \frac{1}{g} \vert&\\
+                    = & \left\vert \frac{f_2}{f_1} - g\right\vert&\\
+                    = & \left\vert 1 - g \right\vert&\\
+                    = & \left\vert 1 - (1 + \frac{1}{g}) \right\vert&\\
+                    = & \left\vert - \frac{1}{g} \right\vert&\\
                     = & \frac{1}{g}&\\
                     = & \frac{1}{f_1 g} &= \frac{1}{f_n g} ~~~ \text{(ok)}\\
                 \end{align*}
                 Induktionsvorraussetzung: Sei die Behauptung bereits gezeigt für ein festes aber beliebiges $n \in \NN$.\\
                 Induktionsschritt: $n \leadsto n+1$
                 \begin{align*}
-                    \vert a_{n+1} - g \vert =  & \vert 1 + \frac{1}{a_n} - g \vert ~~~ \text{nach (a)} \\
-                    = & \vert 1 + \frac{f_n}{f_{n-1}} - g \vert\\
-                    = & \vert 1 + \frac{f_{n-1}}{f_{n-1}} + \frac{f_{n-2}}{f_
-                    {n-1}} - g \vert\\
-                    = & \vert 1 + 1 + a_{n-1} - g \vert\\
-                    = & \frac{1}{f_{n+1} g^{n+1}}\\
+                    \left\vert a_{n+1} - g \right\vert =  & \left\vert 1 + \frac{1}{a_n} - 1 - \frac{1}{g} \right\vert ~~~ \text{nach (a)} &\\
+                    = & \left\vert \frac{1}{a_{n}} - \frac{1}{g} \right\vert&\\
+                    = & \left\vert \frac{g - a_n}{a_{n} \cdot g} \right\vert&\\
+                    = & \frac{a_n - g}{a_n \cdot g}&\\
+                    \overset{IV}{=} & \frac{\frac{1}{f_n \cdot g^n}}{a_n \cdot g}&\\
+                    = & \frac{1}{f_n \cdot g^{n+1} \cdot a_n} & =  \frac{1}{f_{n+1} \cdot g^{n+1} }
                 \end{align*}
             \end{proof}
+        \item
+        	Wir wollen zuerst zeigen, dass $(a_n)_{n \in \NN}$ tatsächlich gegen einen Wert $g \in \RR$ konvergiert. Sei $N \in \NN$ und $\varepsilon > 0 $ vorgegeben. So gilt
+        	\begin{align*}
+        		\left\vert a_n - g\right\vert \overset{(b)}{=} \frac{1}{f_n \cdot g^n} \leq \varepsilon ~~~ \forall n \geq N,
+        	\end{align*}
+        	da $g \approx 1.618 > 1$, womit $g^n$ für wachsende $n$ beliebig groß wird, und $f_n$ für alle $n \in \NN$ eine Summe von bereits positiven Zahlen darstellt, somit auch positiv ist und monoton wächst. Somit wächst für hinreichend große $n (>N)$ der Nenner als Produkt positiver Zahlen beliebig womit die Abschätzung für jedes vorgegebene $\varepsilon >0$ hält.\\
+        	Nachdem die Konvergenz gezeigt ist, betrachten wir den Grenzwert. Im Grenzübergang konvergieren $a_n$ und $a_{n+1}$ gegen den gleichen Grenzwert, womit folgt:
+        	\begin{align*}
+        		& \lim\limits_{n \to \infty} a_{n+1} & = & \lim\limits_{n \to \infty} 1 + \frac{1}{a_n}\\
+        		\Leftrightarrow & g & = & 1 + \frac{1}{g}\\
+        	\end{align*}
+        	Diese Gleichung kennen wir bereits aus Teilaufgabe (a) und wissen, dass sie vom \emph{goldenen Schnitt} erfüllt wird. Somit ist der Grenzwert der Goldene Schnitt $g = \frac{1 + \sqrt{5}}{2}$.
 	\end{enumerate}
 
     \section*{Aufgabe 2}
+    Zu zeigen: Sei $f \colon \RR \to \RR$ eine Abbildung, $0 \leq q < 1$, fest mit
+    		\begin{align*}
+    			\vert f(x) - f(y) \vert \leq q \vert x - y \vert ~~~ \forall x,y \in \RR
+    		\end{align*}
+    Dann gibt es genau einen \emph{Fixpunkt} $x \in \RR$ mit $f(x) = x$.
+    \begin{proof}\\
+    \begin{enumerate}[(a)]
+    	\item
+    		Wir zeigen die Eindeutigkeit der Fixpunkte. Nehmen wir an $x$ und $\hat{x}$ seien zwei verschiedene Fixpunkte, dann gilt:
+    		\begin{align*}
+    			x = f(x) ~~~ \text{ und } ~~~ \hat{x} = f(\hat{x})
+    		\end{align*}
+    		Wir betrachten den Abstand der beiden Fixpunkte:
+    		\begin{align*}
+    			\left\vert x - \hat{x} \right\vert = & \left\vert f(x) - f(\hat{x}) \right\vert\\
+    			\leq & q \cdot \left\vert x - \hat{x}\right\vert
+    		\end{align*}
+    		Diese Ungleichung ist aber nur für $\vert x - \hat{x}\vert = 0$ erfüllbar. Somit muss folgen, dass $x = \hat{x}$ gilt. Dies ergibt allerdings einen Widerspruch zur Annahme, dass $x$ und $\hat{x}$ verschiedene Fixpunkte seien. Somit sind Fixpunkte eindeutig. 
+    	\item
+    		Sei die Folge $(x_n)_{n \in \NN}$ rekursiv definiert durch $x_n = f(x_{n_1})$. Für alle $n \in \NN$ gilt:
+    		\begin{align*}
+    			\vert x_{n+1} - x_n \vert \leq q^n \vert x_1 - x_0 \vert
+    		\end{align*}
+    		Wir zeigen die Behauptung durch Induktion:\\
+    		Induktionsanfang: $n = 1$
+    		\begin{align*}
+    			\vert x_{2} - x_1 \vert = & \vert f(x_1) - f(x_0) \vert\\
+    			\leq & q \cdot \vert x_1 - x_0 \vert ~~~ (ok)
+    		\end{align*}
+    		Induktionsvorraussetzung: Sei die Behauptung bereits gezeigt für ein festes aber beliebiges $n \in \NN$.\\
+            Induktionsschritt: $n \leadsto n+1$
+            \begin{align*}
+            	\vert x_{n+1} - x_n \vert = &\vert f(x_{n} - f(x_{n-1}) \vert\\
+            	\leq & q \cdot \vert x_n - x_{n-1} \vert \\
+            	\overset{IV}{=} & q \cdot q^n \vert x_1 - x_0\vert \\
+            	= q^{n+1} \cdot \vert x_1 - x_0 \vert
+            \end{align*}
+    	\item
+    		Sei $x \in \RR$ der Grenzwert der Folge $(x_n)_{n \in \NN}$, $\varepsilon >0$ vorgegeben und $n \leq m \in$ Indizes. Wir betrachten:
+    		\begin{align*}
+    			\vert x_n - x_m \vert \leq & \sum\limits_{i = n+1}^m \vert x_i - x_{i-1}\vert\\
+    			\leq & \left( \sum\limits_{i = n+1}^m q^{i-1}\right) \vert x_1 - x_0\vert\\
+    			\leq & \left( q^n \sum\limits_{i=0}^\infty q^i\right) \vert x_1 - x_0 \vert\\
+    			= & \underbrace{\frac{q^n}{1-q}}_{\text{:= $a$}} \underbrace{\vert x_1 - x_0 \vert}_{\text{beschränkt}} \leq \varepsilon
+    		\end{align*}
+    		Da $0 \leq q < 1$, wird $a$ beliebig klein und somit ist $x_n$ eine Cauchy Folge.
+    		Wir betrachten nun die rekursive Definition von $(x_n)$ und sehen, dass die Folge
+    		\begin{align*}
+    			&\lim\limits_{n \to \infty} x_n & = & \lim\limits_{n \to \infty} f(x_{n-1})\\
+    			\Leftrightarrow & x &=& f(x)
+    		\end{align*}
+    		gegen den Fixpunkt $x$ konvergiert.
+    \end{enumerate}
+    \end{proof}
 
     \section*{Aufgabe 3}
     Die Folgen $(a_{2n})_{n \in \NN}$, $(a_{2n + 1})_{n \in \NN}$ und $(a_{5n})_{n \in \NN}$ konvergieren. Konvegriert auch $(a_n)_{n \in \NN}$?
-    \\\\
     \begin{proof}
     Wir betrachten $(a_{5n})_{n \in \NN}$. Diese Teilfolge besteht aus den Gliedern ($a_5, a_{10}, a_{15}, \dots)$. Somit teilt sie sich unendlich viele Folgenglieder mit $(a_{2n})_{n \in \NN}$ und mit $(a_{2n +1})_{n \in \NN}$, nämlich $(a_{5}, a_{15}, a_{25}, \dots)$ bzw. $(a_{10}, a_{20}, a_{30}, \dots)$. Da wir von $(a_{5n})_{n \in \NN}$ bereits wissen, dass die Folge konvergiert, konvergieren auch ihre Teilfolgen - insbesondere gegen den gleichen Grenzwert.
-    Somit konvergieren $(a_{2n})$ und $(a_{2n + 1})$ gegen den gleichen Grenzwert wie $(a_{5n})$.\\
+    Somit konvergieren $(a_{2n})$ und $(a_{2n + 1})$ gegen den gleichen Grenzwert wie $(a_{5n})$.
     Da sich $(a_n)_{n \in \NN}$ disjunkt in die zwei Teilfolgen $(a_{2n})$ und $(a_{2n + 1})$ zerlegen lässt, konvergiert die Folge $(a_{n})$ ebenfalls gegen den gleichen Grenzwert.
     \end{proof}
 
@@ -112,7 +183,7 @@
             Nach dem Satz von \emph{Bolzano-Weierstraß} hat $(a_n)_{n \in \NN}$ eine konvergente Teilfolge. Somit gilt die Aussage.
         \item
             Die Folge ist unbeschränkt.\\
-            Sei ohne Einschränkung die Folge nach oben unbeschränkt (der Beweis für "`nach unten unbeschränkt"' verläuft ganz analog). Wir konstruieren eine Folge von Indizes $(i_n) = i_1, i_2, \dots$ unter der Invariante, dass $a_{i_k} < a_{i_{k+1}}$. Dass eine solche Folge existiert, folgt daraus, dass die Folge unbeschränkt ist. Betrachten wir nun die Teilfolge $(a_{i_n})_{n \in \NN}$. Nach Konstruktion gilt für den Grenzwert
+            Sei ohne Einschränkung die Folge nach oben unbeschränkt (der Beweis für "`nach unten unbeschränkt"' verläuft ganz analog). Wir konstruieren eine Folge von Indizes $(i_n) = i_1, i_2, \dots$ unter der Invariante, dass $a_{i_k} < a_{i_{k+1}}$. Dass eine solche Folge existiert, folgt daraus, dass die Folge $(a_n)_{n \in \NN}$ unbeschränkt ist. Betrachten wir nun die Teilfolge $(a_{i_n})_{n \in \NN}$. Nach Konstruktion gilt für den Grenzwert
             \begin{align*}
                 \lim\limits_{n \to \infty} (a_{i_k}) = \infty
             \end{align*}
