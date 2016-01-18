@@ -1,0 +1,100 @@
+\documentclass{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{ngerman}
+%\usepackage[german]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows} 
+
+\usepackage[hidelinks]{hyperref}
+
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+
+\begin{document}
+
+	\title{Analysis 1}
+ 	\author{Dominic Zimmer, Alexander Yongsap\\in Kollaboration mit Jesko Dujmovic und Pascal Weber}
+ 	\subtitle{Übungsblatt 10, Abgabe}
+ 	\publishers{Übungsgruppe: Rami Ahmad}
+  	\maketitle 
+
+	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+
+% \section*{Aufgabe 1}
+\begin{enumerate}[(a)]
+\item
+    \begin{align*}
+        \lim\limits_{x \searrow -\frac{\pi}{2}} \tan(x) = \lim\limits_{x \searrow -\frac{\pi}{2}} \sin(x) \cdot \lim\limits_{x \searrow -\frac{\pi}{2}} \frac{1}{\cos(x)} = -1 \cdot \lim\limits_{x \searrow -\frac{\pi}{2}} \frac{1}{\cos(x)} = -\infty\\
+        \lim\limits_{x \nearrow \frac{\pi}{2}} \tan(x) = \lim\limits_{x \nearrow \frac{\pi}{2}} \sin(x) \cdot \lim\limits_{x \nearrow \frac{\pi}{2}} \frac{1}{\cos(x)} = 1 \cdot \lim\limits_{x \nearrow \frac{\pi}{2}} \frac{1}{\cos(x)} = \infty
+    \end{align*}
+\item
+  Wir bestimmen die Ableitung vom Tangens:
+  \begin{align*}
+    (\tan(x))' = \left(\frac{\sin(x)}{\cos(x)}\right)' = \frac{\cos^2(x)+\sin^2(x)}{\cos^2(x)} = 1 + \frac{\sin^2(x)}{\cos^2(x)} = 1 + \tan^2(x)
+  \end{align*}
+  Die Ableitung ist also immer strikt positiv, damit ist der Tangens laut Vorlesung streng monoton wachsend und somit injektiv. Aus Aufgabenteil (a) kennen wir die Grenzwerte zu den Randstellen des Definitionsbereiches. Somit folgt aus dem Zwischenwertsatz, dass der Tangens surjektiv, folglich bijektiv, ist.
+\item
+  Wir erraten $\arctan(1) = \frac{\pi}{4}$ und $\arctan(-1) = -\frac{\pi}{4}$. Verifikation:
+  \begin{align*}
+    \tan(\frac{\pi}{4})= \frac{\sin(\frac{\pi}{4})}{\cos(\frac{\pi}{4})} = \frac{\sin(\frac{\pi}{4})}{-\sin(\frac{\pi}{4}-\frac{\pi}{2})} = \frac{\sin(\frac{\pi}{4})}{-\sin(-\frac{\pi}{4})} = \frac{\sin(\frac{\pi}{4})}{\sin(\frac{\pi}{4})} = 1\\
+    \tan(-\frac{\pi}{4})= \frac{\sin(-\frac{\pi}{4})}{\cos(-\frac{\pi}{4})} = \frac{\sin(-\frac{\pi}{4})}{\sin(\frac{\pi}{2}-\frac{\pi}{4})} = \frac{\sin(-\frac{\pi}{4})}{\sin(\frac{\pi}{4})} = \frac{\sin(-\frac{\pi}{4})}{-\sin(-\frac{\pi}{4})} = - 1
+  \end{align*}
+  Aus der Definition der Umkehrfunktion folgt die Behauptung.
+\item
+  Für $\tan'(x)$ siehe oben.
+  \begin{align*}
+    (\arctan(x))' = \frac{1}{f^{-1'} (f(x))} = \frac{1}{1 + \tan(\arctan(x))^2} = \frac{1}{1 + x^2}
+  \end{align*}
+ \end{enumerate} 
+
+\section*{Aufgabe 2}
+Sei $f \colon [0,\infty) \to \RR$ definiert als $f(x) = \sqrt{x}$.
+\begin{enumerate}[(a)]
+\item
+\begin{align*}
+  \lim\limits_{x \to y} \frac{f(x) - f(y)}{x - y} &= \lim\limits_{x \to y} \frac{\sqrt{x} - \sqrt{y}}{x-y}\\
+   & = \lim\limits_{x \to y} \frac{x-y}{(x-y)(\sqrt{x}+\sqrt{y})} = \lim\limits_{x \to y} \frac{1}{\sqrt{x} + \sqrt{y}} = \frac{1}{2 \sqrt{x}} = f'(x)
+\end{align*}
+\item
+  Insbesondere wissen wir: $f^{-1}(x) = x^2$ und $f^{-1'}(x) = 2x$.
+  \begin{align*}
+    f'(x) = \frac{1}{f^{-1'} (f(x))} = \frac{1}{2 f(x)} = \frac{1}{2\sqrt{x}}
+  \end{align*}
+\end{enumerate}   
+
+\section*{Aufgabe 3}
+
+
+\end{document}
