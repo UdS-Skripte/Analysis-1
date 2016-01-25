@@ -1,0 +1,133 @@
+\documentclass{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{ngerman}
+%\usepackage[german]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows} 
+
+\usepackage[hidelinks]{hyperref}
+
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+
+\newcommand{\round}[1]{\left(#1\right)}
+\newcommand{\brackets}[1]{\left[#1\right]}
+\newcommand{\curly}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\euler}{\mathrm{e}}
+
+\newcommand{\round}[1]{\left\(#1\right\)}
+
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+
+\begin{document}
+
+	\title{Analysis 1}
+ 	\author{Dominic Zimmer, Alexander Yongsap\\in Kollaboration mit Jesko Dujmovic und Pascal Weber}
+ 	\subtitle{Übungsblatt 11, Abgabe}
+ 	\publishers{Übungsgruppe: Rami Ahmad}
+  	\maketitle 
+
+	%see http://www.namsu.de/Extra/strukturen/Inhaltsverzeichnis.html
+
+\section*{Aufgabe 1}
+Bestimmen sie die Ableitungen folgender Funktionen:
+\begin{align*}
+    f_1 \colon \round{0,\infty} \to \RR, x \mapsto x^a ~~~ a \in \RR\\
+    f_2 \colon \RR \to \RR, x \mapsto b^x~~~ b >0\\
+    f_3 \colon \round{0,\infty} \to \RR, x \mapsto x^x
+\end{align*}
+\begin{enumerate}[(a)]
+\item
+    \begin{align*}
+        \round{f_1\round{x}}' & = \round{x^a}'\\
+        & = \round{\euler^{a \ln\round{x}}}'\\
+        & = \euler^{a \ln\round{x}} \cdot \round{a \ln\round{x}}' ~~~ \text{(Kettenregel)}\\
+        & = \euler^{a \ln\round{x}} \cdot \frac{a}{x}\\
+        & = a \cdot x^{a-1}
+    \end{align*}
+    \begin{align*}
+        \round{f_2\round{x}}' & = \round{b^x}'\\
+        & = \round{\euler^{x \ln\round{b}}}'\\
+        & = \euler^{x \ln\round{b}} \cdot \round{x \ln\round{b}}' ~~~ \text{(Kettenregel)}\\
+        & = \euler^{x \ln\round{b}} \cdot \ln\round{b}\\
+        & = b^x \cdot \ln\round{b}
+    \end{align*}
+    \begin{align*}
+        \round{f_3\round{x}}' & = \round{x^x}'\\
+        & = \round{\euler^{x \ln\round{x}}}'\\
+        & = \euler^{x \ln\round{x}} \cdot \round{x \ln\round{x}}' ~~~ \text{(Kettenregel)}\\
+        & = \euler^{x \ln\round{x}} \cdot \round{\ln\round{x} + 1}\\
+        & = x^x \cdot \round{\ln\round{x} + 1}
+    \end{align*}
+\item
+    \begin{enumerate}[(i)]
+    \item
+        Wir überprüfen die Stetigkeit mithilfe des Folgenkriteriums. Sei dazu $(x_n)_{n \in \NN}$ eine beliebige Nullfolge
+        \begin{align*}
+            \lim\limits_{n \to \infty} f(x_n) & = \lim\limits_{n \to \infty} \round{x_n}^{\round{x_n}}\\
+            & = \lim\limits_{n \to \infty} \euler^{x_n \cdot \ln\round{x_n}}\\
+            & = \euler^0 ~~~ \text{(Wachstum von $\ln$)}\\
+            & = 1\\
+            & = f(0)
+        \end{align*}
+        Wir widerlegen die Differenzierbarkeit mit dem Differenzialquotienten und der in (a) ausgerechneten Ableitung.
+        \begin{align*}
+            \lim\limits_{x \to 0} \frac{f\round{x} - f\round{0}}{x-0} & = \lim\limits_{x \to 0} \frac{f\round{x} - 1}{x}\\
+            & = \lim\limits_{x \to 0} \frac{f'\round{x}}{1} ~~~ \text{(del ospedale)}\\
+            & = \lim\limits_{x \to 0} x^x \cdot \round{\ln\round{x} + 1}\\
+            & = -\infty
+        \end{align*}
+    \item
+        Wir bestimmen die Monotonieintervalle durch die Signa der ersten Ableitung von $f$.
+        \begin{align*}
+            f'(x) = 0 &\Leftrightarrow x^x \cdot \round{\ln(x) + 1} = 0\\
+            & \Leftrightarrow x = \euler^{-1} ~~~ \text{(Da $x^x > 0$)}\\
+        \end{align*}
+        Wir verifizieren noch zusätzlich, dass $f''(\euler^{-1})>0$, und somit ein lokales Minimum vorliegt. Da $f(0)= 1 > 0.69 \approx f(\euler^{-1}$ existieren keine Randextrema (da $\lim\limits_{x \to \infty} x^x = \infty$).
+        \begin{align*}
+            f''(x) & = x^x \cdot \round{\frac{1}{x} + \round{\ln\round{x} + 1}^2}\\
+            f''(\euler^{-1}) & = \underbrace{ \underbrace{\round{\euler^{-1}}^{\round{\euler^{-1}}}}_{>0} \cdot \round{\underbrace{\euler}_{>0} + \underbrace{\round{\ln\round{\frac{1}{\euler}} + 1}^2}_{>0}}}_{>0}\\
+        \end{align*}
+        Mit $f(0) =1$ folgt nun, dass $f$ auf $[0,\frac{1}{\euler}]$ monoton fällt und auf $[\frac{1}{\euler},\infty)$.
+    \item
+        Da $f(\frac{1}{\euler})$ das globale Minimum ist und der Grenzwert $\lim\limits_{x \to \infty} x^x = \infty$ ist, folgt nach dem Zwischenwertsatz das Bild $f([0,\infty)) = [f\round{\frac{1}{\euler}}, \infty)$.
+    \end{enumerate}
+\end{enumerate}
+
+
+\section*{Aufgabe 3}
+
+
+\end{document}
