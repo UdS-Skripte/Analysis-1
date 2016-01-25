@@ -1,6 +1,6 @@
 \documentclass{scrreprt}
 
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage{enumerate}
 \usepackage{ngerman}
 %\usepackage[german]{babel}
@@ -33,6 +33,10 @@
   \array{#1}}
 \makeatother
 
+
+\usepackage{coloremoji}
+\usepackage{extarrows}
+
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\QQ}{\mathbb{Q}}
@@ -44,8 +48,6 @@
 \newcommand{\curly}[1]{\left\lbrace#1\right\rbrace}
 \newcommand{\abs}[1]{\left\vert#1\right\vert}
 \newcommand{\euler}{\mathrm{e}}
-
-\newcommand{\round}[1]{\left\(#1\right\)}
 
 \newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
 \newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
@@ -105,7 +107,7 @@ Bestimmen sie die Ableitungen folgender Funktionen:
         Wir widerlegen die Differenzierbarkeit mit dem Differenzialquotienten und der in (a) ausgerechneten Ableitung.
         \begin{align*}
             \lim\limits_{x \to 0} \frac{f\round{x} - f\round{0}}{x-0} & = \lim\limits_{x \to 0} \frac{f\round{x} - 1}{x}\\
-            & = \lim\limits_{x \to 0} \frac{f'\round{x}}{1} ~~~ \text{(del ospedale)}\\
+            & \overset{🏥}{=} \lim\limits_{x \to 0} \frac{f'\round{x}}{1} ~~~\text{(Da Zähler und Nenner gegen 0 streben)}\\
             & = \lim\limits_{x \to 0} x^x \cdot \round{\ln\round{x} + 1}\\
             & = -\infty
         \end{align*}
@@ -118,7 +120,7 @@ Bestimmen sie die Ableitungen folgender Funktionen:
         Wir verifizieren noch zusätzlich, dass $f''(\euler^{-1})>0$, und somit ein lokales Minimum vorliegt. Da $f(0)= 1 > 0.69 \approx f(\euler^{-1}$ existieren keine Randextrema (da $\lim\limits_{x \to \infty} x^x = \infty$).
         \begin{align*}
             f''(x) & = x^x \cdot \round{\frac{1}{x} + \round{\ln\round{x} + 1}^2}\\
-            f''(\euler^{-1}) & = \underbrace{ \underbrace{\round{\euler^{-1}}^{\round{\euler^{-1}}}}_{>0} \cdot \round{\underbrace{\euler}_{>0} + \underbrace{\round{\ln\round{\frac{1}{\euler}} + 1}^2}_{>0}}}_{>0}\\
+            f''(\euler^{-1}) & = \underbrace{ \underbrace{\round{\euler^{-1}}^{\round{\euler^{-1}}}}_{>0} \cdot \round{\underbrace{\euler}_{>0} + \underbrace{\round{\ln\round{\frac{1}{\euler}} + 1}^2}_{\geq0}}}_{>0}\\
         \end{align*}
         Mit $f(0) =1$ folgt nun, dass $f$ auf $[0,\frac{1}{\euler}]$ monoton fällt und auf $[\frac{1}{\euler},\infty)$.
     \item
@@ -126,8 +128,72 @@ Bestimmen sie die Ableitungen folgender Funktionen:
     \end{enumerate}
 \end{enumerate}
 
+\pagebreak
+\section*{Aufgabe 2}
+Seien $a,b >0$ relle Zahlen. Die Folgenden Grenzwerte gelten zu berechnen:
+\begin{enumerate}[(a)]
+\item
+    \begin{align*}
+        \lim\limits_{x \to a} \frac{x^5 - a^5}{x^3 - a^3} \xlongequal{🏥^0} \lim\limits_{x \to a} \frac{5 x^4}{3 x^2} = \frac{5}{3} a^2
+    \end{align*}
+\item
+    \begin{align*}
+        \lim\limits_{n \to \infty} \frac{a^{\frac{1}{n}} -1}{b^{\frac{1}{n}} -1} \xlongequal{🏥^0} \lim\limits_{n \to \infty} \frac{a^{\frac{1}{n}} \cdot \ln\round{a}}{b^{\frac{1}{n}} \cdot \ln\round{b}} \xlongequal{\text{linear}} \frac{\ln\round{a}}{\ln\round{b}} \cdot \lim\limits_{n \to \infty} \frac{\sqrt[n]{a}}{\sqrt[n]{b}} = \frac{\ln\round{a}}{\ln\round{b}}
+    \end{align*}
+\item
+    \begin{align*}
+        \lim\limits_{x \to 0} \frac{\euler^{ax} - \euler^{-ax}}{\sin\round{bx}} \xlongequal{🏥^0} \lim\limits_{x \to 0} \frac{a \cdot \euler^{ax} - (-a) \cdot \euler^{-ax}}{b\cos\round{bx}} = \lim\limits_{x \to 0} \frac{a \cdot \round{\euler^{ax} + \euler^{-ax}}}{b \cos\round{bx}}= \frac{2 a}{b}
+    \end{align*}
+\item
+    \begin{align*}
+        &\lim\limits_{x \to 0} \round{\frac{1}{\sin\round{x}} - \frac{1}{x}} = \lim\limits_{x \to 0} \round{\frac{x - \sin\round{x}}{x \sin\round{x}}} \xlongequal{🏥^0} \lim\limits_{x \to 0} \round{\frac{1-\cos\round{x}}{\sin\round{x} + x \cos\round{x}}} \\
+        \xlongequal{🏥^0}& \lim\limits_{x \to 0} \round{\frac{\sin\round{x}}{\cos\round{x} + \cos\round{x} - x \sin\round{x}}} = \frac{0}{1+1+0} = 0
+    \end{align*}
+\end{enumerate}
+Wobei wir "`$🏥^0$"' als Kurzschreibweise verwenden für "`gerechtfertigte Anwendung des Satzes von l'Hospital, da Nenner und Zähler des vorangegangenen Bruches im Grenzübergang gegen Null streben"'.
 
+\pagebreak
 \section*{Aufgabe 3}
+Sei $f \colon \RR \to \RR$ eine überall differenzierbare Funktion mit den Grenzwerten
+\begin{align*}
+    \lim\limits_{x \to \infty} f\round{x} = \lim\limits_{x \to -\infty} f\round{x} = \infty
+\end{align*}
+\begin{enumerate}[(a)]
+\item
+    Zu zeigen ist, dass ein $x_0 \in \RR$ existiert, mit $f'(x_0) = 0$. Aufgrund des Grenzverhaltens von $f$, existieren $a < b \in \RR$ mit $f\round{a} = f\round{b}$ (entweder ist die Funktion konstant oder weist einen Monotoniewechsel auf). Der Mittelwertsatz liefert uns die Existenz eines $x_0 \in \RR$ folgender Gestalt:
+    \begin{align*}
+        f'(x_0) = \frac{f(a) - f(b)}{a-b} = \frac{0}{a-b} = 0
+    \end{align*}
+\item
+    Allgemein existiert aber nicht zu jedem $a \in \RR$ ein $x_0 \in \RR$, so dass $f'(x_0) = a$ ist. Gegenbeispiel:
+    \begin{align*}
+        g \colon \RR \to \RR, x \mapsto \begin{cases} 
+                                            \abs{x}, & \abs{x} > \frac{1}{2}\\
+                                            \frac{1}{2}x^2,& \abs{x} \leq \frac{1}{2}
+                                        \end{cases}
+        ~~~ \text{mit} ~~~
+        g' \colon \RR\setminus\curly{-\frac{1}{2}, \frac{1}{2}} \to \RR, x \mapsto \begin{cases} 
+                                            \frac{\abs{x}}{x}, & \abs{x} > \frac{1}{2}\\
+                                            x ,& \abs{x} < \frac{1}{2}
+                                        \end{cases}
+    \end{align*}
+    Wobei wir die Betragsfunktion
+    \begin{align*}
+        \abs{\ \cdot \ }\colon \RR \to \RR, x \mapsto \begin{cases} 
+                                            x, & x \geq 0\\
+                                            -x,& x<0
+                                        \end{cases},\\
+    \end{align*}
+    welche auf $\RR\setminus\curly{0}$ differenzierbar ist, verwenden.\\
+    Das verlangte Grenzverhalten wird von $g$ erfüllt. Auch die Stetigkeit (auf ganz $\RR$) und die Differenzierbarkeit auf $\RR\setminus \curly{-\frac{1}{2}, \frac{1}{2}}$ lässt sich leicht nachprüfen (bzw. folgt als Verknüpfung differenzierbarer Funktionen trivial). Bleibt die Differenzierbarkeit in $\frac{1}{2}$ und $-\frac{1}{2}$ zu zeigen. Wir werden diese nur für $\frac{1}{2}$ zeigen, da der andere Fall ganz analog verläuft.
+    \begin{align*}
+        \lim\limits_{x \nearrow \frac{1}{2}} g'(x) = \lim\limits_{x \nearrow \frac{1}{2}} x = 1 = \lim\limits_{x \searrow \frac{1}{2}} \frac{\mathrm{\abs{x}}}{x} = \lim\limits_{x \searrow \frac{1}{2}} g'(x)
+    \end{align*}
+    Somit lässt sich $g'$ auf $\RR$ differenzierbar fortsetzen durch 
+    \begin{align*}
+        g'(\frac{1}{2}) = 1 ~~~ g'(-\frac{1}{2}) = -1
+    \end{align*}
 
+\end{enumerate}
 
 \end{document}
