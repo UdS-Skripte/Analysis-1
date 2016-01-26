@@ -56,7 +56,8 @@
 \begin{document}
 
 	\title{Analysis 1}
- 	\author{Dominic Zimmer, Alexander Yongsap\\in Kollaboration mit Jesko Dujmovic und Pascal Weber}
+ 	%\author{Dominic Zimmer, Alexander Yongsap\\in Kollaboration mit Jesko Dujmovic und Pascal Weber}
+    \author{Jesko Dujmovic, Pascal Weber\\in Kollaboration mit Dominic Zimmer und Alexander Yongsap}
  	\subtitle{Übungsblatt 11, Abgabe}
  	\publishers{Übungsgruppe: Rami Ahmad}
   	\maketitle 
@@ -193,7 +194,20 @@ Sei $f \colon \RR \to \RR$ eine überall differenzierbare Funktion mit den Grenz
     \begin{align*}
         g'(\frac{1}{2}) = 1 ~~~ g'(-\frac{1}{2}) = -1
     \end{align*}
-
 \end{enumerate}
 
+\pagebreak
+\section*{Aufgabe 5}
+Sei $f \colon [a, b] \to \RR$ eine $C^1$-Funktion auf $[a,b]$ mit $-\infty < a < b < \infty$. Zu zeigen ist, dass $f$ Lipschitz-stetig ist mit Lipschitz-Konstante $L = \Vert f' \Vert_{[a,b]}$.\\
+Da $f$ auf $[a,b]$ $C^1$ ist, können wir den Mittelwertsatz der Differentialrechnung anwenden: Es gibt also ein $\xi \in (a,b)$ mit:
+\begin{align*}
+    &f'(\xi) = \frac{f(b) - f(a)}{b-a}
+\end{align*}
+Schätzen wir nun gegen die Beträge und die Supremumsnorm ab, erhalten wir:
+\begin{align*}
+    & \abs{f(b) - f(a)} \\
+    = &\abs{f'(\xi)} \cdot \abs{b-a} \\
+    \leq & \Vert f' \Vert \cdot \abs{b-a}
+\end{align*}
+Also Lipschitz-stetig mit der gewünschten Lipschitz-Konstante.
 \end{document}
